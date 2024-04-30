@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\backend"
+    "\\backend",
+    "\\backend\\Fiap.Ingresso.Backend"
   ],
+  "SelectedNode": "\\backend\\Fiap.Ingresso.Backend\\Fiap.Ingresso.Backend.sln",
   "PreviewInSolutionExplorer": false
 }
