@@ -21,7 +21,7 @@ namespace Fiap.Ingresso.Usuario.API.Controllers
 
         [HttpPost("Criar-Usuario")]
         [AllowAnonymous]
-        public IActionResult Cadastrar(CadastrarDto request)
+        public IActionResult Cadastrar(DTOs.Usuario request)
         {
             if (!ModelState.IsValid)
             {
