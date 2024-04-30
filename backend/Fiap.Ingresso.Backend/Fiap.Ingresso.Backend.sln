@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Ingresso.Usuario.Teste", "src\teste\Fiap.Ingresso.Usuario.Teste\Fiap.Ingresso.Usuario.Teste.csproj", "{82F14327-8250-4222-8122-581A009E139C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Usuario.Teste", "src\teste\Fiap.Ingresso.Usuario.Teste\Fiap.Ingresso.Usuario.Teste.csproj", "{82F14327-8250-4222-8122-581A009E139C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Ingresso.Evento.Teste", "src\teste\Fiap.Ingresso.Evento.Teste\Fiap.Ingresso.Evento.Teste.csproj", "{D7465B23-839D-4525-8365-55CD7800B771}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Evento.Teste", "src\teste\Fiap.Ingresso.Evento.Teste\Fiap.Ingresso.Evento.Teste.csproj", "{D7465B23-839D-4525-8365-55CD7800B771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Ingresso.Ingresso.Teste", "src\teste\Fiap.Ingresso.Ingresso.Teste\Fiap.Ingresso.Ingresso.Teste.csproj", "{D605DF4E-F4D4-49D7-9E1E-476B43E87181}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Ingresso.Teste", "src\teste\Fiap.Ingresso.Ingresso.Teste\Fiap.Ingresso.Ingresso.Teste.csproj", "{D605DF4E-F4D4-49D7-9E1E-476B43E87181}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Ingresso.Pagamento.Teste", "Fiap.Ingresso.Pagamento.Teste\Fiap.Ingresso.Pagamento.Teste.csproj", "{A587F0C7-4D3B-4394-9F16-2F0FC6D91C97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Usuario.API", "src\servicos\Fiap.Ingresso.Usuario.API\Fiap.Ingresso.Usuario.API.csproj", "{F989D2AF-834C-4FDE-A6B0-2DF5901DA0FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Ingresso.Usuario.API", "src\servicos\Fiap.Ingresso.Usuario.API\Fiap.Ingresso.Usuario.API.csproj", "{F989D2AF-834C-4FDE-A6B0-2DF5901DA0FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Pagamento.Teste", "src\teste\Fiap.Ingresso.Pagamento.Teste\Fiap.Ingresso.Pagamento.Teste.csproj", "{1C3D8276-AEE0-4EA8-8ADB-E57F4A5CDF45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +31,14 @@ Global
 		{D605DF4E-F4D4-49D7-9E1E-476B43E87181}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D605DF4E-F4D4-49D7-9E1E-476B43E87181}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D605DF4E-F4D4-49D7-9E1E-476B43E87181}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A587F0C7-4D3B-4394-9F16-2F0FC6D91C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A587F0C7-4D3B-4394-9F16-2F0FC6D91C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A587F0C7-4D3B-4394-9F16-2F0FC6D91C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A587F0C7-4D3B-4394-9F16-2F0FC6D91C97}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F989D2AF-834C-4FDE-A6B0-2DF5901DA0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F989D2AF-834C-4FDE-A6B0-2DF5901DA0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F989D2AF-834C-4FDE-A6B0-2DF5901DA0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F989D2AF-834C-4FDE-A6B0-2DF5901DA0FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C3D8276-AEE0-4EA8-8ADB-E57F4A5CDF45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C3D8276-AEE0-4EA8-8ADB-E57F4A5CDF45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C3D8276-AEE0-4EA8-8ADB-E57F4A5CDF45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C3D8276-AEE0-4EA8-8ADB-E57F4A5CDF45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
