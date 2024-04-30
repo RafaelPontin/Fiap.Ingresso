@@ -9,13 +9,21 @@ namespace Fiap.Ingresso.Usuario.API.Data.Mappings
         {
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.Name)
+            builder.Property(c => c.Nome)
                 .IsRequired()
                 .HasColumnType("varchar(200)");
 
             builder.Property(c => c.Email)
                 .IsRequired()
                 .HasColumnType("varchar(200)");
+
+            builder.Property(c => c.Cpf)
+                .IsRequired()
+                .HasColumnType("varchar(12)");
+
+            builder.Property(c => c.Senha)
+                .IsRequired()
+                .HasColumnType("varchar(100)");
         }
     }
 }

@@ -24,17 +24,25 @@ namespace Fiap.Ingresso.Usuario.API.Migrations
 
             modelBuilder.Entity("Fiap.Ingresso.Usuario.API.Domain.Usuario", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("varchar(12)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 

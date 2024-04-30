@@ -16,8 +16,10 @@ namespace Fiap.Ingresso.Usuario.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "varchar(200)", nullable: false),
-                    Email = table.Column<string>(type: "varchar(200)", nullable: false)
+                    Nome = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Email = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Cpf = table.Column<string>(type: "varchar(12)", nullable: false),
+                    Senha = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>
                 {
