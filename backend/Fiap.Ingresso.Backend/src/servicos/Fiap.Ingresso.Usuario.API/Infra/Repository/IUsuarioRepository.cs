@@ -4,6 +4,6 @@
     {
         Task Cadastrar(Domain.Usuario usuario);
         Task AlterarCadastro(Domain.Usuario usuario);
-        Task Login(string email, string senha);
+        Task<Domain.Usuario> Login(string email, string senha);
     }
 }

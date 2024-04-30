@@ -26,9 +26,9 @@ namespace Fiap.Ingresso.Usuario.API.Infra.Repository
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task Login(string email, string senha)
+        public async Task<Domain.Usuario> Login(string email, string senha)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Usuarios.Where(x => x.Email == email && x.Senha == senha).FirstOrDefaultAsync();
         }
     }
 }
