@@ -17,7 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Buildin Blocks", "Buildin B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C6AB995A-9830-49A8-B394-96A1B62BF203}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Ingresso.WebAPI.Core", "src\building blocks\Fiap.Ingresso.WebAPI.Core\Fiap.Ingresso.WebAPI.Core.csproj", "{508167FA-821F-4D2C-B97E-BE2A42A11663}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.WebAPI.Core", "src\building blocks\Fiap.Ingresso.WebAPI.Core\Fiap.Ingresso.WebAPI.Core.csproj", "{508167FA-821F-4D2C-B97E-BE2A42A11663}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Ingresso.Evento.API", "src\servicos\Fiap.Ingresso.Evento.API\Fiap.Ingresso.Evento.API.csproj", "{266B3CED-2E5D-4A03-894F-6F67938E8E68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{508167FA-821F-4D2C-B97E-BE2A42A11663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{508167FA-821F-4D2C-B97E-BE2A42A11663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{508167FA-821F-4D2C-B97E-BE2A42A11663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{266B3CED-2E5D-4A03-894F-6F67938E8E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{266B3CED-2E5D-4A03-894F-6F67938E8E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{266B3CED-2E5D-4A03-894F-6F67938E8E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{266B3CED-2E5D-4A03-894F-6F67938E8E68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
