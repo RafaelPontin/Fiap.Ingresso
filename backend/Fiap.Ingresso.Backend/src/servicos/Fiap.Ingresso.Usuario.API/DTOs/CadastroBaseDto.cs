@@ -11,8 +11,11 @@ namespace Fiap.Ingresso.Usuario.API.DTOs
         public string Cpf { get; set; }
     }
 
-    public class Usuario : CadastroBaseDto
+    public class CadastrarUsuario : CadastroBaseDto
     {
+        [Required(ErrorMessage = "Email é obrigatório.")]
+        public string Email { get; set; }
+
         [Required(ErrorMessage = "Login é obrigatório.")]
         public string Login { get; set; }
 

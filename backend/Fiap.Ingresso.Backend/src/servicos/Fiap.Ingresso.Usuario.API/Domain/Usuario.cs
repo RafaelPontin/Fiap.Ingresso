@@ -54,5 +54,8 @@ public class Usuario
         else Cpf = cpf;
     }
 
-
+    public bool EhValido()
+    {
+        return !Erros.Any();
+    }    
 }
