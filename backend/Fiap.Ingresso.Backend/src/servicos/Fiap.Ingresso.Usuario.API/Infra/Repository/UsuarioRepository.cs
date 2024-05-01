@@ -30,5 +30,10 @@ namespace Fiap.Ingresso.Usuario.API.Infra.Repository
         {
             return await _dbContext.Usuarios.Where(x => x.Email == email && x.Senha == senha).FirstOrDefaultAsync();
         }
+
+        public async Task<Domain.Usuario> ObterPorEmail(string email)
+        {
+            return await _dbContext.Usuarios.Where(x => x.Email == email).FirstOrDefaultAsync();
+        }
     }
 }
