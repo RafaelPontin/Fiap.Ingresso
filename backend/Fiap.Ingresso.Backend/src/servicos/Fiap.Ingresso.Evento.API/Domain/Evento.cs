@@ -7,7 +7,7 @@ public class Evento
     public DateTime? DataFim { get; private set; }
     public DateTime? DataEvento { get; private set; }
     public int PublicoMaximo { get; private set; }
-    public bool Ativo { get; private set; }
+    public int Ativo { get; private set; }
     public string Logradouro { get; private set; }
     public string Numero { get; private set; }
     public string Cidade { get; private set; }
@@ -119,7 +119,7 @@ public class Evento
 
     public void SetAtivo(bool ativo)
     {
-        Ativo = ativo;
+        Ativo = (ativo == true) ? 1 : 0;
     }
 
     public void SetNomeEvento(string nome)

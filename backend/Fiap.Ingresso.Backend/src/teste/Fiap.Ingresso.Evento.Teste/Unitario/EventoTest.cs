@@ -137,7 +137,7 @@ public class EventoTest
 
         evento.SetAtivo(true);
 
-        Assert.True(evento.Ativo);
+        Assert.Equal(evento.Ativo, 1);
     }
 
     [Fact(DisplayName = "Destiva Evento")]
@@ -147,7 +147,7 @@ public class EventoTest
 
         evento.SetAtivo(false);
 
-        Assert.False(evento.Ativo);
+        Assert.Equal(evento.Ativo, 0);
     }
 
     [Fact(DisplayName = "Criar evento com valor invalido (negativo)")]
@@ -168,7 +168,7 @@ public class EventoTest
 
         evento.CancelarEvento();
 
-        Assert.False(evento.Ativo);
+        Assert.Equal(evento.Ativo, 0);
     }
 
 
