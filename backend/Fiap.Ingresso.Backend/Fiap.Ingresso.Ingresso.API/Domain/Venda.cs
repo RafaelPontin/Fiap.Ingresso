@@ -29,7 +29,7 @@ public class Venda
 
     private void ValidarVenda(Guid usuarioId, Guid ingressoId)
     {
-        if (usuarioId == Guid.Empty) Erros.Add("UsuarioId vazio ou nulo");
-        if (ingressoId == Guid.Empty) Erros.Add("IngressoId vazio ou nulo");
+        if (usuarioId == Guid.Empty) Erros.Add("UsuarioId é obrigatório");
+        if (ingressoId == Guid.Empty) Erros.Add("IngressoId é obrigatório");
     }
 }

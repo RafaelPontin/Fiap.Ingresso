@@ -34,5 +34,7 @@ public class VendaTest
 
         // Assert
         Assert.Equal(2, venda.Erros.Count);
+        Assert.Contains("UsuarioId é obrigatório", venda.Erros);
+        Assert.Contains("IngressoId é obrigatório", venda.Erros);
     }
 }
