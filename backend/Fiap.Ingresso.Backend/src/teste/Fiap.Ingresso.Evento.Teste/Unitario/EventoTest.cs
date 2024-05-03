@@ -1,5 +1,4 @@
 ﻿using Bogus;
-using Microsoft.AspNetCore.Components;
 using AppDomain = Fiap.Ingresso.Evento.API.Domain;
 
 namespace Fiap.Ingresso.Evento.Teste.Unitario;
