@@ -31,9 +31,5 @@ public class Venda
     {
         if (usuarioId == Guid.Empty) Erros.Add("UsuarioId vazio ou nulo");
         if (ingressoId == Guid.Empty) Erros.Add("IngressoId vazio ou nulo");
-        if (Erros.Any())
-        {
-            throw new Exception(string.Join(",", Erros));
-        }
     }
 }

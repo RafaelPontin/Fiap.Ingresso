@@ -46,11 +46,15 @@ public class VendaService : IVendaService
 
             var venda = ingresso.Vender(usuarioId);
 
-            if (ingresso.Erros.Any())
+            if (ingresso.Erros.Any() || venda.Erros.Any())
             {
+                var erros = new List<string>();
+                erros.AddRange(ingresso.Erros);
+                erros.AddRange(venda.Erros);
+
                 return new ResponseResult<bool>()
                 {
-                    Erros = ingresso.Erros,
+                    Erros = erros,
                     Data = false,
                     Status = 400
                 };
