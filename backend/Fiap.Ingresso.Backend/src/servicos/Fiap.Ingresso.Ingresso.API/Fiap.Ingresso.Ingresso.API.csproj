@@ -25,7 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\building blocks\Fiap.Ingresso.WebAPI.Core\Fiap.Ingresso.WebAPI.Core.csproj" />
+    <ProjectReference Include="..\..\building blocks\Fiap.Ingresso.WebAPI.Core\Fiap.Ingresso.WebAPI.Core.csproj" />
   </ItemGroup>
+
+
 
 </Project>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -18,8 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Fiap.Ingresso.Ingresso.API\Fiap.Ingresso.Ingresso.API.csproj" />
+    <ProjectReference Include="..\..\servicos\Fiap.Ingresso.Ingresso.API\Fiap.Ingresso.Ingresso.API.csproj" />
   </ItemGroup>
+
 
   <ItemGroup>
     <Using Include="Xunit" />
