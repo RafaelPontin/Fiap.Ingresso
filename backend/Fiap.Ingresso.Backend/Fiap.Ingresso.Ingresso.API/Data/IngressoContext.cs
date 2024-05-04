@@ -8,8 +8,8 @@ public class IngressoContext : DbContext
     {
     }
 
+    public DbSet<Domain.IngressosDoEvento> IngressosDosEventos { get; set; }
     public DbSet<Domain.Ingresso> Ingressos { get; set; }
-    public DbSet<Domain.Venda> Vendas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

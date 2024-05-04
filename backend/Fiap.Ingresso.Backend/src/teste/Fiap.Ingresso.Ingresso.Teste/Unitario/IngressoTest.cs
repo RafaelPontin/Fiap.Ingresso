@@ -15,7 +15,7 @@ public class IngressoTest
         DateTime dataFim = DateTime.Now.AddDays(7);
 
         // Act
-        var ingresso = new AppDomain.Ingresso(eventoId, total, disponiveis, preco, dataFim);
+        var ingresso = new AppDomain.IngressosDoEvento(eventoId, total, disponiveis, preco, dataFim);
 
         // Assert
         Assert.Equal(eventoId, ingresso.EventoId);
@@ -38,7 +38,7 @@ public class IngressoTest
         DateTime dataFim = DateTime.Now.AddDays(-7);
 
         // Act
-        var ingresso = new AppDomain.Ingresso(eventoId, total, disponiveis, preco, dataFim);
+        var ingresso = new AppDomain.IngressosDoEvento(eventoId, total, disponiveis, preco, dataFim);
 
         // Assert
         Assert.NotEqual(Guid.Empty, ingresso.Id);
@@ -50,27 +50,34 @@ public class IngressoTest
     public void Deve_Vender_Ingresso_Corretamente()
     {
         // Arrange
-        var ingresso = new AppDomain.Ingresso(Guid.NewGuid(), 100, 100, 50, DateTime.Now.AddDays(7));
+        Random rand = new Random();
+        var ingresso = new AppDomain.IngressosDoEvento(Guid.NewGuid(), 100, 100, 50, DateTime.Now.AddDays(7));
         Guid usuarioId = Guid.NewGuid();
+        int quantidade = rand.Next(1, 3);
 
         // Act
-        var venda = ingresso.Vender(usuarioId);
+        var vendas = ingresso.ComprarIngressosDoEvento(usuarioId ,quantidade);
 
         // Assert
-        Assert.Equal(99, ingresso.Disponiveis);
-        Assert.Single(ingresso.Vendas);
-        Assert.Equal(usuarioId, venda.UsuarioId);
-        Assert.Equal(ingresso.Id, venda.IngressoId);
+        Assert.Equal(ingresso.Erros.Count, 0);
+        foreach (var v in vendas)
+        {
+            Assert.Equal(usuarioId, v.UsuarioId);
+            Assert.Equal(ingresso.EventoId, v.EventoId);
+            Assert.Equal(ingresso.Disponiveis, ingresso.Total-quantidade);
+            Assert.Equal(DateTime.Now.Date, v.DataVenda.Date);
+            Assert.Empty(v.Erros);
+        }
     }
 
     [Fact]
     public void Deve_Desativar_Ingresso_Ao_Expirar()
     {
         // Arrange
-        var ingresso = new AppDomain.Ingresso(Guid.NewGuid(), 100, 100, 50.00m, DateTime.Now.AddDays(-1));
+        var ingresso = new AppDomain.IngressosDoEvento(Guid.NewGuid(), 100, 100, 50.00m, DateTime.Now.AddDays(-1));
 
         // Act
-        ingresso.Vender(Guid.NewGuid());
+        ingresso.ComprarIngressosDoEvento(Guid.NewGuid(),1);
 
         // Assert
         Assert.False(ingresso.Ativo);
@@ -81,13 +88,27 @@ public class IngressoTest
     public void Deve_Desativar_Ingresso_Ao_Esgotar()
     {
         // Arrange
-        var ingresso = new AppDomain.Ingresso(Guid.NewGuid(), 100, 0, 50.00m, DateTime.Now.AddDays(7));
+        var ingresso = new AppDomain.IngressosDoEvento(Guid.NewGuid(), 100, 0, 50.00m, DateTime.Now.AddDays(7));
 
         // Act
-        ingresso.Vender(Guid.NewGuid());
+        ingresso.ComprarIngressosDoEvento(Guid.NewGuid(), 1);
 
         // Assert
         Assert.False(ingresso.Ativo);
         Assert.Contains("Ingressos Esgotados ou Indisponível", ingresso.Erros);
+    }
+
+    [Fact]
+    public void Deve_Falhar_Ingresso_Com_Quantidade_Zero()
+    {
+        // Arrange
+        var ingresso = new AppDomain.IngressosDoEvento(Guid.NewGuid(), 100, 100, 50.00m, DateTime.Now.AddDays(7));
+
+        // Act
+        ingresso.ComprarIngressosDoEvento(Guid.NewGuid(), 0);
+
+        // Assert
+        Assert.Equal(ingresso.Erros.Count, 1);
+        Assert.Contains("Quantidade de ingressos deve ser maior que 0", ingresso.Erros);
     }
 }

@@ -14,40 +14,27 @@ public class IngressoController : BaseController
         _services = service;
     }
 
-    [HttpPost("Criar-Ingressos")]
-    public async Task<IActionResult> CadastraIngresso(CadastrarIngressoDto dto)
+    [HttpPost("Comprar/{ingressoId}")]
+    public async Task<IActionResult> ComprarIngresso([FromRoute]Guid ingressoId,[FromBody] IngressoDto dto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest("Informações inválidas");
         }
 
-        var response = await _services.CadastraIngresso(dto);
+        var response = await _services.ComprarIngresso(ingressoId, dto.UsuarioId, dto.Quantidade);
         return Ok(response);
     }
 
-    [HttpGet("Obter-Ingressos-Disponiveis")]
-    public async Task<IActionResult> ObterIngressosDisponiveis()
+    [HttpGet("Obter-Histórico-Por-Usuario")]
+    public async Task<IActionResult> ObterHistoricoDeIngressosPorUsuario(Guid usuarioId)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest("Informações inválidas");
         }
 
-        var response = await _services.BuscarIngressosDisponiveis();
+        var response = await _services.ObterHistoricoDeIngressosPorUsuario(usuarioId);
         return Ok(response);
     }
-
-    [HttpGet("Obter-Ingressos-Por-Evento")]
-    public async Task<IActionResult> ObterIngressosPorEvento([FromRoute] Guid eventoId)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest("Informações inválidas");
-        }
-
-        var response = await _services.BuscarIngressosPorEvento(eventoId);
-        return Ok(response);
-    }
-
 }

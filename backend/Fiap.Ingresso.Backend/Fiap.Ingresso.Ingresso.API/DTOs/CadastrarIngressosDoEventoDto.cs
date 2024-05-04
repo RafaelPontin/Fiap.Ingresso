@@ -1,6 +1,6 @@
 ﻿namespace Fiap.Ingresso.Ingresso.API.DTOs;
 
-public record CadastrarIngressoDto
+public record CadastrarIngressosDoEventoDto
 {
     public Guid EventoId { get;  set; }
     public int Total { get;  set; }

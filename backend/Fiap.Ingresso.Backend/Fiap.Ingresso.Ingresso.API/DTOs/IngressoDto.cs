@@ -1,6 +1,7 @@
 ﻿namespace Fiap.Ingresso.Ingresso.API.DTOs;
 
-public record VenderIngressoDto
+public record IngressoDto
 { 
     public Guid UsuarioId { get; set; }
+    public int Quantidade { get; set; }
 }

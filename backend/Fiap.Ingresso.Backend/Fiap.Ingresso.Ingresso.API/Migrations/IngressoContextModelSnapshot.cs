@@ -28,6 +28,31 @@ namespace Fiap.Ingresso.Ingresso.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DataVenda")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("EventoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("IngressosDoEventoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IngressosDoEventoId");
+
+                    b.ToTable("Ingressos");
+                });
+
+            modelBuilder.Entity("Fiap.Ingresso.Ingresso.API.Domain.IngressosDoEvento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
@@ -51,43 +76,19 @@ namespace Fiap.Ingresso.Ingresso.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingressos");
-                });
-
-            modelBuilder.Entity("Fiap.Ingresso.Ingresso.API.Domain.Venda", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataVenda")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("IngressoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IngressoId");
-
-                    b.ToTable("Vendas");
-                });
-
-            modelBuilder.Entity("Fiap.Ingresso.Ingresso.API.Domain.Venda", b =>
-                {
-                    b.HasOne("Fiap.Ingresso.Ingresso.API.Domain.Ingresso", null)
-                        .WithMany("Vendas")
-                        .HasForeignKey("IngressoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("IngressosDosEventos");
                 });
 
             modelBuilder.Entity("Fiap.Ingresso.Ingresso.API.Domain.Ingresso", b =>
                 {
-                    b.Navigation("Vendas");
+                    b.HasOne("Fiap.Ingresso.Ingresso.API.Domain.IngressosDoEvento", null)
+                        .WithMany("IngressosVendidos")
+                        .HasForeignKey("IngressosDoEventoId");
+                });
+
+            modelBuilder.Entity("Fiap.Ingresso.Ingresso.API.Domain.IngressosDoEvento", b =>
+                {
+                    b.Navigation("IngressosVendidos");
                 });
 #pragma warning restore 612, 618
         }

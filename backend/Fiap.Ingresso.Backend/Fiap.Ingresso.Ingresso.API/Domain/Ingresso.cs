@@ -3,15 +3,9 @@
 public class Ingresso
 {
     public Guid Id { get; private set; }
-    public Guid EventoId { get; private set; }
-    public int Total { get; private set; }
-    public int Disponiveis { get; private set; }
-    public decimal Preco { get; private set; }
-    public DateTime DataInicio { get; private set; }
-    public DateTime DataFim { get; private set; }
-    public bool Ativo { get; private set; }
-
-    public List<Venda> Vendas = new List<Venda>();
+    public Guid UsuarioId { get; private set; }
+    public Guid EventoId { get; set; }
+    public DateTime DataVenda { get; private set; }
 
     public List<string> Erros = new List<string>();
 
@@ -19,57 +13,23 @@ public class Ingresso
     {
         
     }
-    public Ingresso(Guid eventoid,int total, int disponiveis,decimal preco,DateTime dataFim)
+    public Ingresso(Guid usuarioId, Guid eventoId)
     {
-        DefinirIngresso(eventoid, total, disponiveis, preco, dataFim);
+        DefinirIngresso(usuarioId, eventoId);
     }
 
-    private void DefinirIngresso(Guid eventoid, int total, int disponiveis, decimal preco, DateTime dataFim)
+    private void DefinirIngresso(Guid usuarioId, Guid eventoId)
     {
-        ValidarIngresso(eventoid, total, disponiveis, preco, dataFim);
+        ValidarIngresso(usuarioId, eventoId);
         Id = Guid.NewGuid();
-        EventoId = eventoid;
-        Total = total;
-        Disponiveis = disponiveis;
-        Preco = preco;
-        DataInicio = DateTime.Now;
-        DataFim = dataFim;
-        Ativo = true;
+        UsuarioId = usuarioId;
+        DataVenda = DateTime.Now;
+        EventoId = eventoId;
     }
 
-    public Venda Vender(Guid usuarioId)
+    private void ValidarIngresso(Guid usuarioId, Guid eventoId)
     {
-        ValidarVenda();
-
-        Disponiveis--;
-
-        var venda = new Venda(usuarioId,this.Id);
-        Vendas.Add(venda);
-
-        return venda;
-    }
-
-    private void ValidarVenda()
-    {
-        if (DataFim < DateTime.Now)
-        {   
-            Ativo = false;
-            Erros.Add("Ingresso expirado");
-        }
-        if (Disponiveis <= 0)
-        {   
-            Ativo = false;
-            Erros.Add("Ingressos Esgotados ou Indisponível");
-        }
-    }
-
-    private void ValidarIngresso(Guid eventoid, int totalIngressos, int disponiveis, decimal preco, DateTime dataFim)
-    {
-        if (eventoid == Guid.Empty) Erros.Add("EventoId vazio ou nulo");
-        if (totalIngressos <= 0) Erros.Add("Total de ingressos deve ser maior que 0");
-        if (disponiveis <= 0) Erros.Add("Total de ingressos disponiveis deve ser maior que 0");
-        if (preco <= 0) Erros.Add("Preço unitário deve ser maior que 0");
-        if (dataFim < DateTime.Now) Erros.Add("Data fim deve ser maior que a data atual");
-        if (disponiveis > totalIngressos) Erros.Add("Total de ingressos disponiveis não pode ser maior que o total de ingressos");
+        if (usuarioId == Guid.Empty) Erros.Add("UsuarioId é obrigatório");
+        if (eventoId == Guid.Empty) Erros.Add("EventoId é obrigatório");
     }
 }

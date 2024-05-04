@@ -1,10 +1,7 @@
-﻿
-namespace Fiap.Ingresso.Ingresso.API.Infra.Contratos;
+﻿namespace Fiap.Ingresso.Ingresso.API.Infra.Contratos;
 
 public interface IIngressoRepository
 {
-    Task CadastraIngresso(Domain.Ingresso ingresso);
-    Task<Domain.Ingresso?> ObterIngressosPorEvento(Guid eventoId);
-    Task<Domain.Ingresso?> ObterIngressoPorId(Guid ingressoId);
-    Task<IEnumerable<Domain.Ingresso?>> ObterIngressosDisponiveis();
+    Task ComprarIngressos(Domain.IngressosDoEvento ingressosDoEvento, IEnumerable<Domain.Ingresso> ingressos);
+    Task<IEnumerable<Domain.Ingresso>> ObterHistoricoDeIngressosPorUsuario(Guid usuarioId);
 }

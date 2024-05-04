@@ -15,6 +15,8 @@ public static class ApiConfig
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped<IngressoContext>();
+        services.AddScoped<IIngressosDoEventoRepository, IngressosDoEventoRepository>();
+        services.AddScoped<IIngressosDoEventoService, IngressosDoEventoService>();
         services.AddScoped<IIngressoRepository, IngressoRepository>();
         services.AddScoped<IIngressoService, IngressoService>();
 

@@ -9,15 +9,15 @@ public class VendaTest
     {
         // Arrange
         Guid usuarioId = Guid.NewGuid();
-        Guid ingressoId = Guid.NewGuid();
+        Guid eventoId = Guid.NewGuid();
 
         // Act
-        var venda = new AppDomain.Venda(usuarioId, ingressoId);
+        var venda = new AppDomain.Ingresso(usuarioId, eventoId);
 
         // Assert
         Assert.NotEqual(Guid.Empty, venda.Id);
         Assert.Equal(usuarioId, venda.UsuarioId);
-        Assert.Equal(ingressoId, venda.IngressoId);
+        Assert.Equal(eventoId, venda.EventoId);
         Assert.Equal(DateTime.Now.Date, venda.DataVenda.Date);
         Assert.Empty(venda.Erros);
     }
@@ -27,14 +27,14 @@ public class VendaTest
     {
         // Arrange
         Guid usuarioId = Guid.Empty;
-        Guid ingressoId = Guid.Empty;
+        Guid eventoId = Guid.Empty;
 
         // Act
-        var venda = new AppDomain.Venda(usuarioId, ingressoId);
+        var venda = new AppDomain.Ingresso(usuarioId, eventoId);
 
         // Assert
         Assert.Equal(2, venda.Erros.Count);
         Assert.Contains("UsuarioId é obrigatório", venda.Erros);
-        Assert.Contains("IngressoId é obrigatório", venda.Erros);
+        Assert.Contains("EventoId é obrigatório", venda.Erros);
     }
 }

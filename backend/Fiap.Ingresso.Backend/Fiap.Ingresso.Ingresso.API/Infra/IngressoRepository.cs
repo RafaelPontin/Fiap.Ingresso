@@ -7,32 +7,26 @@ namespace Fiap.Ingresso.Ingresso.API.Infra;
 public class IngressoRepository : IIngressoRepository
 {
     protected readonly IngressoContext _dbContext;
-    protected readonly DbSet<Domain.Ingresso> _dbSet;
+    protected readonly DbSet<Domain.IngressosDoEvento> _dbSet;
 
     public IngressoRepository(IngressoContext context)
     {
         _dbContext = context ?? throw new ArgumentNullException(nameof(context));
-        _dbSet = context.Set<Domain.Ingresso>();
+        _dbSet = context.Set<Domain.IngressosDoEvento>();
     }
 
-    public async Task CadastraIngresso(Domain.Ingresso ingresso)
+    public async Task ComprarIngressos(Domain.IngressosDoEvento ingressosDoEvento, IEnumerable<Domain.Ingresso> ingressos)
     {
-        await _dbContext.Ingressos.AddAsync(ingresso);
+        _dbContext.IngressosDosEventos.Update(ingressosDoEvento);
+        foreach (var ingresso in ingressos)
+        {
+            await _dbContext.Ingressos.AddAsync(ingresso);
+        }
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<Domain.Ingresso?> ObterIngressosPorEvento(Guid eventoId)
+    public async Task<IEnumerable<Domain.Ingresso>> ObterHistoricoDeIngressosPorUsuario(Guid usuarioId)
     {
-        return await _dbSet.FirstOrDefaultAsync(x => x.EventoId == eventoId);
-    }
-
-    public async Task<Domain.Ingresso?> ObterIngressoPorId(Guid ingressoId)
-    {
-        return await _dbSet.FirstOrDefaultAsync(x => x.Id == ingressoId);
-    }
-
-    public async Task<IEnumerable<Domain.Ingresso?>> ObterIngressosDisponiveis()
-    {
-        return await _dbSet.Where(x => x.Disponiveis > 0 && x.Ativo == true && x.DataFim >= DateTime.Now).ToListAsync();
+        return await _dbContext.Ingressos.Where(x => x.UsuarioId == usuarioId).ToListAsync();
     }
 }

@@ -1,6 +1,4 @@
-﻿using Fiap.Ingresso.Ingresso.API.Domain;
-using Fiap.Ingresso.Ingresso.API.DTOs;
-using Fiap.Ingresso.Ingresso.API.Infra.Contratos;
+﻿using Fiap.Ingresso.Ingresso.API.Infra.Contratos;
 using Fiap.Ingresso.Ingresso.API.Services.Contratos;
 using Fiap.Ingresso.WebAPI.Core.Communication;
 
@@ -9,32 +7,53 @@ namespace Fiap.Ingresso.Ingresso.API.Services;
 public class IngressoService : IIngressoService
 {
     private readonly IIngressoRepository _repository;
+    private readonly IIngressosDoEventoRepository _ingressoRepository;
 
-    public IngressoService(IIngressoRepository repository)
+    public IngressoService(IIngressoRepository repository, IIngressosDoEventoRepository ingressoRepository)
     {
         _repository = repository;
+        _ingressoRepository = ingressoRepository;
     }
 
-    public async Task<ResponseResult<bool>> CadastraIngresso(CadastrarIngressoDto dto)
+    public async Task<ResponseResult<bool>> ComprarIngresso(Guid ingressoId, Guid usuarioId, int quantidade)
     {
         try
         {
-            var ingresso = new Domain.Ingresso(dto.EventoId, dto.Total, dto.Disponiveis, dto.Preco, dto.DataFim);
+            var ingresso = await _ingressoRepository.ObterIngressosDoEventoPorId(ingressoId);
 
-            if (ingresso.Erros.Any())
+            if (ingresso == null)
             {
                 return new ResponseResult<bool>()
                 {
-                    Erros = ingresso.Erros,
+                    Erros = new List<string>() { "Ingresso não encontrado" },
+                    Data = false,
+                    Status = 404
+                };
+            }
+
+            var vendas = ingresso.ComprarIngressosDoEvento(usuarioId, quantidade);
+
+            foreach (var venda in vendas)
+            {
+                ingresso.Erros.AddRange(venda.Erros);
+            }
+
+            if (ingresso.Erros.Any())
+            {
+                var erros = new List<string>();
+                erros.AddRange(ingresso.Erros);
+
+                return new ResponseResult<bool>()
+                {
+                    Erros = erros,
                     Data = false,
                     Status = 400
                 };
             }
 
-            await _repository.CadastraIngresso(ingresso);
+            await _repository.ComprarIngressos(ingresso, vendas);
 
-            return new ResponseResult<bool>() { Data = true, Status = 201 };
-
+            return new ResponseResult<bool>() { Data = true, Status = 200 };
         }
         catch (Exception ex)
         {
@@ -42,23 +61,25 @@ public class IngressoService : IIngressoService
         }
     }
 
-    public async Task<ResponseResult<IEnumerable<Domain.Ingresso>>> BuscarIngressosDisponiveis()
+    public async Task<ResponseResult<IEnumerable<Domain.Ingresso>>> ObterHistoricoDeIngressosPorUsuario(Guid usuarioId)
     {
         try
         {
-            var ingressos = await _repository.ObterIngressosDisponiveis();
+            var vendas = await _repository.ObterHistoricoDeIngressosPorUsuario(usuarioId);
 
-            if (ingressos == null || !ingressos.Any())
+            if (vendas == null || !vendas.Any())
             {
                 return new ResponseResult<IEnumerable<Domain.Ingresso>>()
                 {
-                    Erros = new List<string>() { "Nenhum Ingresso Disponível" },
+                    Erros = new List<string>() { "Nenhum registro encontrado" },
                     Data = null,
                     Status = 404
                 };
             }
 
-            return new ResponseResult<IEnumerable<Domain.Ingresso>>() { Data = ingressos, Status = 200 };
+
+
+            return new ResponseResult<IEnumerable<Domain.Ingresso>>() { Data = vendas, Status = 200 };
 
         }
         catch (Exception ex)
@@ -67,28 +88,4 @@ public class IngressoService : IIngressoService
         }
     }
 
-    public async Task<ResponseResult<Domain.Ingresso>> BuscarIngressosPorEvento(Guid eventoId)
-    {
-        try
-        {
-            var ingresso = await _repository.ObterIngressosPorEvento(eventoId);
-
-            if (ingresso == null)
-            {
-                return new ResponseResult<Domain.Ingresso>()
-                {
-                    Erros = new List<string>() { "Nenhum Ingresso Encontrado" },
-                    Data = null,
-                    Status = 404
-                };
-            }
-
-            return new ResponseResult<Domain.Ingresso>() { Data = ingresso, Status = 200 };
-
-        }
-        catch (Exception ex)
-        {
-            return new ResponseResult<Domain.Ingresso>() { Data = null, Status = 500 };
-        }
-    }
 }

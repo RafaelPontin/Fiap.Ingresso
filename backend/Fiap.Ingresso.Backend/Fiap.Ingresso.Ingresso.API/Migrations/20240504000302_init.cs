@@ -12,7 +12,7 @@ namespace Fiap.Ingresso.Ingresso.API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Ingressos",
+                name: "IngressosDosEventos",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -26,43 +26,43 @@ namespace Fiap.Ingresso.Ingresso.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ingressos", x => x.Id);
+                    table.PrimaryKey("PK_IngressosDosEventos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vendas",
+                name: "Ingressos",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IngressoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataVenda = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    EventoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DataVenda = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IngressosDoEventoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vendas", x => x.Id);
+                    table.PrimaryKey("PK_Ingressos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vendas_Ingressos_IngressoId",
-                        column: x => x.IngressoId,
-                        principalTable: "Ingressos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Ingressos_IngressosDosEventos_IngressosDoEventoId",
+                        column: x => x.IngressosDoEventoId,
+                        principalTable: "IngressosDosEventos",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vendas_IngressoId",
-                table: "Vendas",
-                column: "IngressoId");
+                name: "IX_Ingressos_IngressosDoEventoId",
+                table: "Ingressos",
+                column: "IngressosDoEventoId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Vendas");
+                name: "Ingressos");
 
             migrationBuilder.DropTable(
-                name: "Ingressos");
+                name: "IngressosDosEventos");
         }
     }
 }
