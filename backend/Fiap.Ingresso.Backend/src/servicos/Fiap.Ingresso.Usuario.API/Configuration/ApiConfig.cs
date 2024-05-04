@@ -1,4 +1,5 @@
 ﻿using Fiap.Ingresso.Usuario.API.Data;
+using Fiap.Ingresso.WebAPI.Core.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.Ingresso.Usuario.API.Configuration
@@ -9,6 +10,8 @@ namespace Fiap.Ingresso.Usuario.API.Configuration
         {
             services.AddDbContext<UsuarioContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            //services.Configure<AppSettings>(options => configuration.GetSection("AppSettings").Bind(options));
 
             services.AddControllers();
 
@@ -21,6 +24,8 @@ namespace Fiap.Ingresso.Usuario.API.Configuration
                             .AllowAnyMethod()
                             .AllowAnyHeader());
             });
+
+            
         }
 
         public static void UseApiConfiguration(this WebApplication app)
