@@ -1,4 +1,5 @@
-﻿using Fiap.Ingresso.Usuario.API.DTOs;
+﻿using Azure;
+using Fiap.Ingresso.Usuario.API.DTOs;
 using Fiap.Ingresso.Usuario.API.Infra.Repository;
 using Fiap.Ingresso.Usuario.API.Services.Contracts;
 using Fiap.Ingresso.WebAPI.Core.Communication;
@@ -16,11 +17,12 @@ namespace Fiap.Ingresso.Usuario.API.Services
 
         private readonly IUsuarioRepository _repository;
         private readonly AppSettings _appSettings;
-
-        public UsuarioService(IUsuarioRepository repository, IOptions<AppSettings> appSettings)
+        private readonly IHttpContextAccessor _accessor;
+        public UsuarioService(IUsuarioRepository repository, IOptions<AppSettings> appSettings, IHttpContextAccessor accessor)
         {
             _repository = repository;
             _appSettings = appSettings.Value;
+            _accessor = accessor;
         }
 
         public async Task<ResponseResult<UsuarioResponse>> CadastrarUsuario(CadastrarUsuarioDto usuario)
@@ -38,15 +40,20 @@ namespace Fiap.Ingresso.Usuario.API.Services
 
             await _repository.Cadastrar(novoUsuario.Data);
 
+            ObterUsuarioResponse(response, novoUsuario.Data);
+
+            return response;            
+        }
+
+        private void ObterUsuarioResponse(ResponseResult<UsuarioResponse> response, Domain.Usuario usuario)
+        {
             response.Data = new UsuarioResponse
             {
-                Cpf = novoUsuario.Data.Cpf,
-                Email = novoUsuario.Data.Email,
-                Id = novoUsuario.Data.Id,
-                Nome = novoUsuario.Data.Nome
+                Cpf = usuario.Cpf,
+                Email = usuario.Email,
+                Id = usuario.Id,
+                Nome = usuario.Nome
             };
-
-            return response;
         }
 
         public async Task<ResponseResult<string>> Login(string email, string senha)
@@ -128,9 +135,37 @@ namespace Fiap.Ingresso.Usuario.API.Services
             return usuario != null;
         }
 
-        public Task<ResponseResult<UsuarioResponse>> AlterarUsuario(AlterarCadastroDto usuario)
+        public async Task<ResponseResult<UsuarioResponse>> AlterarUsuario(AlterarCadastroDto usuarioDto)
         {
-            return null;
+
+            var response = new ResponseResult<UsuarioResponse>();
+
+            var usuarioEmail = ObterUserEmail();          
+
+            if (!await VerificarEmailCadastrado(usuarioEmail))
+            {
+                response.Erros.Add("Não foi possível alterar os dados. Usuário não encontrado");
+                response.Status = 400;
+                return response;
+            }
+
+            var usuario = await _repository.ObterPorEmail(usuarioEmail);
+            usuario.AdicionaNome(usuarioDto.Nome);
+            usuario.AdicionaCpf(usuarioDto.Cpf);
+
+            await _repository.AlterarCadastro(usuario);
+
+            ObterUsuarioResponse(response, usuario);
+
+            return response;
+        }
+
+        private string ObterUserEmail()
+        {
+            var claims = _accessor.HttpContext.User.Identity as ClaimsIdentity;
+
+            var email = _accessor.HttpContext.User.FindFirst("Email");
+            return email.Value.ToString();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace Fiap.Ingresso.Usuario.API.Configuration
     {
         public static void RegisterServices(this IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddScoped<IUsuarioService, UsuarioService>();
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
