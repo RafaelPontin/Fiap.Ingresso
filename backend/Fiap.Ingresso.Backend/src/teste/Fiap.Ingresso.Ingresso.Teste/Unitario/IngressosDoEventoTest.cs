@@ -2,10 +2,10 @@
 
 namespace Fiap.Ingresso.Ingresso.Teste.Unitario;
 
-public class IngressoTest
+public class IngressosDoEventoTest
 {
     [Fact]
-    public void Deve_Criar_Ingresso_Corretamente()
+    public void Deve_Criar_Ingressos_Do_Evento_Corretamente()
     {
         // Arrange
         Guid eventoId = Guid.NewGuid();
@@ -28,7 +28,7 @@ public class IngressoTest
     }
 
     [Fact]
-    public void Deve_Retornar_Erros_Ao_Criar_Ingresso_Com_Parametros_Invalidos()
+    public void Deve_Retornar_Erros_Ao_Criar_Ingressos_Do_Evento_Com_Parametros_Invalidos()
     {
         // Arrange
         Guid eventoId = Guid.Empty;
@@ -47,7 +47,7 @@ public class IngressoTest
     }
 
     [Fact]
-    public void Deve_Vender_Ingresso_Corretamente()
+    public void Deve_Vender_Ingressos_Do_Evento_Corretamente()
     {
         // Arrange
         Random rand = new Random();
@@ -71,7 +71,7 @@ public class IngressoTest
     }
 
     [Fact]
-    public void Deve_Desativar_Ingresso_Ao_Expirar()
+    public void Deve_Desativar_Ingressos_Do_Evento_Ao_Expirar()
     {
         // Arrange
         var ingresso = new AppDomain.IngressosDoEvento(Guid.NewGuid(), 100, 100, 50.00m, DateTime.Now.AddDays(-1));
@@ -85,7 +85,7 @@ public class IngressoTest
     }
 
     [Fact]
-    public void Deve_Desativar_Ingresso_Ao_Esgotar()
+    public void Deve_Desativar_Ingressos_Do_Evento_Ao_Esgotar()
     {
         // Arrange
         var ingresso = new AppDomain.IngressosDoEvento(Guid.NewGuid(), 100, 0, 50.00m, DateTime.Now.AddDays(7));
@@ -99,7 +99,7 @@ public class IngressoTest
     }
 
     [Fact]
-    public void Deve_Falhar_Ingresso_Com_Quantidade_Zero()
+    public void Deve_Falhar_Ingressos_Do_Evento_Com_Quantidade_Zero()
     {
         // Arrange
         var ingresso = new AppDomain.IngressosDoEvento(Guid.NewGuid(), 100, 100, 50.00m, DateTime.Now.AddDays(7));

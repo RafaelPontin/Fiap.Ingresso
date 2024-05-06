@@ -53,7 +53,7 @@ public class IngressoService : IIngressoService
 
             await _repository.ComprarIngressos(ingresso, vendas);
 
-            return new ResponseResult<bool>() { Data = true, Status = 200 };
+            return new ResponseResult<bool>() { Data = true, Status = 201 };
         }
         catch (Exception ex)
         {

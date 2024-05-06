@@ -2,10 +2,10 @@
 
 namespace Fiap.Ingresso.Ingresso.Teste.Unitario;
 
-public class VendaTest
+public class IngressosTest
 {
     [Fact]
-    public void Deve_Criar_Venda_Corretamente()
+    public void Deve_Criar_Ingressos_Corretamente()
     {
         // Arrange
         Guid usuarioId = Guid.NewGuid();
@@ -23,7 +23,7 @@ public class VendaTest
     }
 
     [Fact]
-    public void Deve_Retornar_Erros_Ao_Criar_Venda_Com_Parametros_Invalidos()
+    public void Deve_Retornar_Erros_Ao_Criar_Ingressos_Com_Parametros_Invalidos()
     {
         // Arrange
         Guid usuarioId = Guid.Empty;
