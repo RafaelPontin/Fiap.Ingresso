@@ -66,7 +66,7 @@ namespace Fiap.Ingresso.Usuario.Teste.Unitario
         public void Cria_id_usuario()
         {
             _usuario.CriarId();
-            Assert.True(_usuario.Id is not null);
+            Assert.True(_usuario.Id != Guid.Empty);
         }
 
 
