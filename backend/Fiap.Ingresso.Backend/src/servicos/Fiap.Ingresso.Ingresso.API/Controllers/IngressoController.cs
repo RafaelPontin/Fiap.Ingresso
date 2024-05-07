@@ -22,7 +22,7 @@ public class IngressoController : BaseController
             return BadRequest("Informações inválidas");
         }
 
-        var response = await _services.ComprarIngresso(ingressoId, dto.UsuarioId, dto.Quantidade);
+        var response = await _services.ComprarIngresso(ingressoId, dto.UsuarioId, dto.Quantidade, dto.PagamentoId);
         return Ok(response);
     }
 

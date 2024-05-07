@@ -8,14 +8,16 @@ public class IngressoService : IIngressoService
 {
     private readonly IIngressoRepository _repository;
     private readonly IIngressosDoEventoRepository _ingressoRepository;
+    private readonly ValidarPagamentoService _pagamentoService;
 
-    public IngressoService(IIngressoRepository repository, IIngressosDoEventoRepository ingressoRepository)
+    public IngressoService(IIngressoRepository repository, IIngressosDoEventoRepository ingressoRepository, ValidarPagamentoService pagamentoService)
     {
         _repository = repository;
         _ingressoRepository = ingressoRepository;
+        _pagamentoService = pagamentoService;
     }
 
-    public async Task<ResponseResult<bool>> ComprarIngresso(Guid ingressoId, Guid usuarioId, int quantidade)
+    public async Task<ResponseResult<bool>> ComprarIngresso(Guid ingressoId, Guid usuarioId, int quantidade, Guid pagamentoId)
     {
         try
         {
@@ -32,6 +34,18 @@ public class IngressoService : IIngressoService
             }
 
             var vendas = ingresso.ComprarIngressosDoEvento(usuarioId, quantidade);
+
+            var validaPagamento = await _pagamentoService.ValidarPagamento(pagamentoId);
+
+            if (!validaPagamento)
+            {
+                return new ResponseResult<bool>()
+                {
+                    Erros = new List<string>() { "Pagamento não realizado" },
+                    Data = false,
+                    Status = 400
+                };
+            }
 
             foreach (var venda in vendas)
             {
@@ -87,5 +101,4 @@ public class IngressoService : IIngressoService
             return new ResponseResult<IEnumerable<Domain.Ingresso>>() { Data = null, Status = 500 };
         }
     }
-
 }
