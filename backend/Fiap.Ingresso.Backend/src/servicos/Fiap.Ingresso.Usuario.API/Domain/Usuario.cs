@@ -2,7 +2,7 @@
 
 public class Usuario
 {
-    public Guid? Id { get; set; }
+    public Guid Id { get; set; }
     public string Nome { get; private set; }
     public string Email { get; private set; }
     public string Cpf { get; private set; }
@@ -22,6 +22,7 @@ public class Usuario
         AdicionaEmail(email);
         AdicionaCpf(cpf);
         AdicionaSenha(senha);
+        CriarId();
     }
 
     public void CriarId()

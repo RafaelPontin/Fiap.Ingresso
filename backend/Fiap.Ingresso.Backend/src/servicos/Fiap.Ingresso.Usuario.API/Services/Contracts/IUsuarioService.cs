@@ -5,6 +5,8 @@ namespace Fiap.Ingresso.Usuario.API.Services.Contracts
 {
     public interface IUsuarioService
     {
-        Task<ResponseResult<Domain.Usuario>> CadastrarUsuario(CadastrarUsuario usuario);        
+        Task<ResponseResult<UsuarioResponse>> CadastrarUsuario(CadastrarUsuarioDto usuario);        
+        Task<ResponseResult<UsuarioResponse>> AlterarUsuario(AlterarCadastroDto usuario);        
+        Task<ResponseResult<string>> Login(string email, string senha);        
     }
 }
