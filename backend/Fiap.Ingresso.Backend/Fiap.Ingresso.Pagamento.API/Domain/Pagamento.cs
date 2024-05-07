@@ -22,7 +22,7 @@ namespace Fiap.Ingresso.Pagamento.API.Domain
         public DateTime DataPagamento { get; set; }
         public EPagamentoValido PagamentoValido { get; set; }
 
-        public List<string> Erros { get; set; }
+        public List<string> Erros { get;}
 
         public Pagamento()
         {
@@ -37,6 +37,7 @@ namespace Fiap.Ingresso.Pagamento.API.Domain
             SetCartao(numeroCartao, nomeCartao, vencimento, codigoVerificador);
             DataPagamento = DateTime.Now;
             GeraId();
+            ValidaPagamento();
         }
 
         public void AdicionarPagamentoBoleto(Guid ingressoId, decimal valorPagamento)
@@ -45,7 +46,9 @@ namespace Fiap.Ingresso.Pagamento.API.Domain
             TipoPagamento = EPagamento.Boleto;
             SetValorPagamento(valorPagamento);
             DataPagamento = DateTime.Now;
-            if(!Erros.Any()) GerarLinhaDigitavel();
+            GeraId();
+            if (!Erros.Any()) GerarLinhaDigitavel();
+            ValidaPagamento();
         }
 
         public void GeraId()
@@ -83,9 +86,9 @@ namespace Fiap.Ingresso.Pagamento.API.Domain
                 PagamentoValido = EPagamentoValido.Valido;
         }
 
-        public void SetCartao(string NumeroCartao, string nomeCartao, string vencimentoCartao, string codigoVerificador)
+        public void SetCartao(string numeroCartao, string nomeCartao, string vencimentoCartao, string codigoVerificador)
         {
-            if (!string.IsNullOrWhiteSpace(NumeroCartao))
+            if (!string.IsNullOrWhiteSpace(numeroCartao))
             {
                 if (string.IsNullOrWhiteSpace(nomeCartao) || string.IsNullOrWhiteSpace(vencimentoCartao) || string.IsNullOrWhiteSpace(codigoVerificador))
                 {
@@ -99,6 +102,7 @@ namespace Fiap.Ingresso.Pagamento.API.Domain
                     NomeCartao = nomeCartao;
                     VencimentoCartao = vencimentoCartao;
                     CodigoVerificador = codigoVerificador;
+                    NumeroCartao = numeroCartao;
                 }
             }
             else
