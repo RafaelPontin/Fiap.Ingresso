@@ -9,6 +9,8 @@ import { LoginComponent } from './components/user/login/login.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NovoEventoComponent } from './components/eventos/novo-evento/novo-evento.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,12 +20,14 @@ import { HttpClientModule } from '@angular/common/http';
     NavComponent,
     LoginComponent,
     EventosComponent,
-    EventoListaComponent
+    EventoListaComponent,
+    NovoEventoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
