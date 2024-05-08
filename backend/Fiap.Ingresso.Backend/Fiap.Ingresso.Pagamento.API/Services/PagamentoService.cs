@@ -13,7 +13,7 @@ public class PagamentoService : IPagamentoService
         _respository = repository;
     }
 
-    public async Task<ResponseResult<Guid>> CadastraEvento(CadastrarPagamento pagamentoDto)
+    public async Task<ResponseResult<Guid>> CadastraPagamento(CadastrarPagamento pagamentoDto)
     {
         var pagamento = pagamentoDto.ConvertToPagamento();
        

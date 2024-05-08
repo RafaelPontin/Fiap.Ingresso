@@ -24,7 +24,7 @@ namespace Fiap.Ingresso.Pagamento.API.Controller
                 return BadRequest("Informações inválidas");
             }
 
-            var retorno = await _service.CadastraEvento(pagamento);
+            var retorno = await _service.CadastraPagamento(pagamento);
             return Ok(retorno);
         }
 
