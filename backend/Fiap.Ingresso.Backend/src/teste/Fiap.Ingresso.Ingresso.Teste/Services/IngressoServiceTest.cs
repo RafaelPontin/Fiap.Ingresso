@@ -2,6 +2,7 @@
 using Fiap.Ingresso.Ingresso.API.DTOs;
 using Fiap.Ingresso.Ingresso.API.Infra.Contratos;
 using Fiap.Ingresso.Ingresso.API.Services;
+using Fiap.Ingresso.Ingresso.API.Services.Contratos;
 using Moq;
 
 namespace Fiap.Ingresso.Ingresso.Teste.Servicos;
@@ -9,7 +10,7 @@ public class IngressoServiceTest
 {
     Mock<IIngressoRepository> _ingressoRepositoryMock = new Mock<IIngressoRepository>();
     Mock<IIngressosDoEventoRepository> _ingressosDoEventoRepositoryMock = new Mock<IIngressosDoEventoRepository>();
-    Mock<ValidarPagamentoService> _validarPagamentoServiceMock = new Mock<ValidarPagamentoService>();
+    Mock<IValidarPagamentoService> _validarPagamentoServiceMock = new Mock<IValidarPagamentoService>();
 
     [Fact]
     public async Task DeveCadastrarIngresso()

@@ -14,7 +14,10 @@ public static class ApiConfig
         services.AddDbContext<IngressoContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+        services.AddHttpClient();
+
         services.AddScoped<IngressoContext>();
+        services.AddScoped<IValidarPagamentoService, ValidarPagamentoService>();
         services.AddScoped<IIngressosDoEventoRepository, IngressosDoEventoRepository>();
         services.AddScoped<IIngressosDoEventoService, IngressosDoEventoService>();
         services.AddScoped<IIngressoRepository, IngressoRepository>();

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiap.Ingresso.Ingresso.API.Migrations
 {
     [DbContext(typeof(IngressoContext))]
-    [Migration("20240504000302_init")]
+    [Migration("20240509002723_init")]
     partial class init
     {
         /// <inheritdoc />

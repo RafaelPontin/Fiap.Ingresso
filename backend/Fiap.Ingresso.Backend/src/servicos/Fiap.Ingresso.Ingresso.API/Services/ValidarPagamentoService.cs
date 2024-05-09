@@ -1,10 +1,11 @@
 ﻿using Fiap.Ingresso.Ingresso.API.DTOs;
+using Fiap.Ingresso.Ingresso.API.Services.Contratos;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace Fiap.Ingresso.Ingresso.API.Services;
 
-public class ValidarPagamentoService
+public class ValidarPagamentoService : IValidarPagamentoService
 {
     private readonly HttpClient _httpClient;
 

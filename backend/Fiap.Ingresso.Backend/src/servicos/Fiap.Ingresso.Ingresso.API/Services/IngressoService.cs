@@ -8,9 +8,9 @@ public class IngressoService : IIngressoService
 {
     private readonly IIngressoRepository _repository;
     private readonly IIngressosDoEventoRepository _ingressoRepository;
-    private readonly ValidarPagamentoService _pagamentoService;
+    private readonly IValidarPagamentoService _pagamentoService;
 
-    public IngressoService(IIngressoRepository repository, IIngressosDoEventoRepository ingressoRepository, ValidarPagamentoService pagamentoService)
+    public IngressoService(IIngressoRepository repository, IIngressosDoEventoRepository ingressoRepository, IValidarPagamentoService pagamentoService)
     {
         _repository = repository;
         _ingressoRepository = ingressoRepository;
