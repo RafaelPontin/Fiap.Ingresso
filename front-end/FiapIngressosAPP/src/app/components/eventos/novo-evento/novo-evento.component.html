@@ -1,0 +1,65 @@
+<div class="container card rounded shadow-sm p-3">
+  <h2>Criar Novo Evento</h2>
+  <form (ngSubmit)="criarEvento()">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" id="nome" [(ngModel)]="novoEvento.Nome" name="nome">
+    </div>
+    <div class="form-group">
+      <label for="dataInicio">Data de Início:</label>
+      <input type="date" class="form-control" id="dataInicio" [(ngModel)]="novoEvento.DataInicio" name="dataInicio">
+    </div>
+    <div class="form-group">
+      <label for="dataFim">Data de Fim:</label>
+      <input type="date" class="form-control" id="dataFim" [(ngModel)]="novoEvento.DataFim" name="dataFim">
+    </div>
+    <div class="form-group">
+      <label for="dataEvento">Data do Evento:</label>
+      <input type="date" class="form-control" id="dataEvento" [(ngModel)]="novoEvento.DataEvento" name="dataEvento">
+    </div>
+    <div class="form-group">
+      <label for="publicoMaximo">Público Máximo:</label>
+      <input type="number" class="form-control" id="publicoMaximo" [(ngModel)]="novoEvento.PublicoMaximo" name="publicoMaximo">
+    </div>
+    <div class="form-group">
+      <label for="ativo">Ativo:</label>
+      <select class="form-control" id="ativo" [(ngModel)]="novoEvento.Ativo" name="ativo">
+        <option value="1">Sim</option>
+        <option value="0">Não</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="logradouro">Logradouro:</label>
+      <input type="text" class="form-control" id="logradouro" [(ngModel)]="novoEvento.Logradouro" name="logradouro">
+    </div>
+    <div class="form-group">
+      <label for="numero">Número:</label>
+      <input type="text" class="form-control" id="numero" [(ngModel)]="novoEvento.Numero" name="numero">
+    </div>
+    <div class="form-group">
+      <label for="cidade">Cidade:</label>
+      <input type="text" class="form-control" id="cidade" [(ngModel)]="novoEvento.Cidade" name="cidade">
+    </div>
+    <div class="form-group">
+      <label for="bairro">Bairro:</label>
+      <input type="text" class="form-control" id="bairro" [(ngModel)]="novoEvento.Bairro" name="bairro">
+    </div>
+    <div class="form-group">
+      <label for="cep">CEP:</label>
+      <input type="text" class="form-control" id="cep" [(ngModel)]="novoEvento.Cep" name="cep">
+    </div>
+    <div class="form-group">
+      <label for="descricao">Descrição:</label>
+      <textarea class="form-control" id="descricao" [(ngModel)]="novoEvento.Descricao" name="descricao"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="siteEvento">Site do Evento:</label>
+      <input type="text" class="form-control" id="siteEvento" [(ngModel)]="novoEvento.SiteEvento" name="siteEvento">
+    </div>
+    <div class="form-group">
+      <label for="valor">Valor:</label>
+      <input type="number" class="form-control" id="valor" [(ngModel)]="novoEvento.Valor" name="valor">
+    </div>
+    <button type="submit" class="btn btn-primary">Criar Evento</button>
+  </form>
+</div>

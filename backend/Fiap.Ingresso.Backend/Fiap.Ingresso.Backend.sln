@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.WebAPI.Core",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Evento.API", "src\servicos\Fiap.Ingresso.Evento.API\Fiap.Ingresso.Evento.API.csproj", "{266B3CED-2E5D-4A03-894F-6F67938E8E68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Ingresso.Pagamento.API", "Fiap.Ingresso.Pagamento.API\Fiap.Ingresso.Pagamento.API.csproj", "{7A883464-9996-4BB0-8453-577EEF8DB4F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Pagamento.API", "Fiap.Ingresso.Pagamento.API\Fiap.Ingresso.Pagamento.API.csproj", "{7A883464-9996-4BB0-8453-577EEF8DB4F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Ingresso.API", "src\servicos\Fiap.Ingresso.Ingresso.API\Fiap.Ingresso.Ingresso.API.csproj", "{871E08AE-A6E1-4E83-A7D7-3060DACCD86A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{7A883464-9996-4BB0-8453-577EEF8DB4F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A883464-9996-4BB0-8453-577EEF8DB4F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A883464-9996-4BB0-8453-577EEF8DB4F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{871E08AE-A6E1-4E83-A7D7-3060DACCD86A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{871E08AE-A6E1-4E83-A7D7-3060DACCD86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{871E08AE-A6E1-4E83-A7D7-3060DACCD86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{871E08AE-A6E1-4E83-A7D7-3060DACCD86A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
