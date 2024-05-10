@@ -9,7 +9,7 @@ import { CadastraEvento } from '../../../models/evento/CadastraEvento';
 })
 export class NovoEventoComponent {
 
-  novoEvento: CadastraEvento = { // Use a interface para tipar novoEvento
+  novoEvento: CadastraEvento = {
     Nome: '',
     DataInicio: new Date(),
     DataFim: new Date(),
@@ -34,26 +34,29 @@ export class NovoEventoComponent {
   criarEvento() {
     this.eventoService.post(this.novoEvento).subscribe((data: any) => {
       console.log('Evento criado com sucesso:', data);
-      // Limpar o formulário ou realizar outra ação após a criação do evento
-      this.novoEvento = {
-        Nome: '',
-        DataInicio: new Date(),
-        DataFim: new Date(),
-        DataEvento: new Date(),
-        PublicoMaximo: 0,
-        Ativo: 0,
-        Logradouro: '',
-        Numero: '',
-        Cidade: '',
-        Bairro: '',
-        Cep: '',
-        Descricao: '',
-        SiteEvento: '',
-        Valor: 0
-      };
+      this.resetform();
     }, error => {
       console.error('Erro ao criar evento:', error);
     });
+  }
+
+  resetform() {
+    this.novoEvento = {
+      Nome: '',
+      DataInicio: new Date(),
+      DataFim: new Date(),
+      DataEvento: new Date(),
+      PublicoMaximo: 0,
+      Ativo: 0,
+      Logradouro: '',
+      Numero: '',
+      Cidade: '',
+      Bairro: '',
+      Cep: '',
+      Descricao: '',
+      SiteEvento: '',
+      Valor: 0
+    };
   }
 
 }
