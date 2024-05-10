@@ -11,6 +11,7 @@ import { EventoListaComponent } from './components/eventos/evento-lista/evento-l
 import { HttpClientModule } from '@angular/common/http';
 import { NovoEventoComponent } from './components/eventos/novo-evento/novo-evento.component';
 import { FormsModule } from '@angular/forms';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     EventosComponent,
     EventoListaComponent,
-    NovoEventoComponent
+    NovoEventoComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
