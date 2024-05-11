@@ -10,8 +10,9 @@ import { EventosComponent } from './components/eventos/eventos.component';
 import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NovoEventoComponent } from './components/eventos/novo-evento/novo-evento.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/user/registration/registration.component';
+import { Router, RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { RegistrationComponent } from './components/user/registration/registrati
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

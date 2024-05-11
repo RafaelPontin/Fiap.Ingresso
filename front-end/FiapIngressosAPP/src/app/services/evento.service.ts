@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ListarEventos } from '../models/evento/ListarEventos';
 import { CadastraEvento } from '../models/evento/CadastraEvento';
+import { DadosEventos } from '../models/evento/DadosEventos';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +14,8 @@ export class EventoService {
 
   constructor(private http: HttpClient) { }
 
-  public get() {
-    return this.http.get(`${this.baseURL}Listar`)
+  public get() : Observable<ListarEventos>{
+    return this.http.get<ListarEventos>(`${this.baseURL}Listar`)
   }
 
   public post(cadastraEvento: CadastraEvento) {

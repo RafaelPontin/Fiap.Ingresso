@@ -15,30 +15,26 @@
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
-          <label>Primeiro Nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Primeiro nome" />
+          <label>Nome</label>
+          <input type="text" class="form-control" placeholder="Insira o Primeiro nome" formControlName="nome" />
         </div>
         <div class="form-group col-sm-6">
-          <label>Último nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Último nome" />
+          <label>CPF</label>
+          <input type="text" class="form-control" placeholder="Insira o Último nome" formControlName="cpf"/>
         </div>
       </div>
       <div class="form-group col-sm-6">
         <label>Email:</label>
-        <input class="form-control" type="text" placeholder="Insira o Nome Completo" />
-      </div>
-      <div class="form-group col-sm-6">
-        <label>Usuario:</label>
-        <input class="form-control" type="text" placeholder="Insira o nome de Usuário" />
+        <input class="form-control" type="text" placeholder="Insira o Nome Completo" formControlName="email"/>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
           <label>Senha:</label>
-          <input class="form-control" type="password" placeholder="Digite uma Senha" />
+          <input class="form-control" type="password" placeholder="Digite uma Senha" formControlName="senha"/>
         </div>
         <div class="form-group col-sm-6">
           <label>Confirmar Senha:</label>
-          <input class="form-control" type="password" placeholder="Confirme a Senha" />
+          <input class="form-control" type="password" placeholder="Confirme a Senha" formControlName="confirmacaoSenha"/>
         </div>
       </div>
       <div class="form-row p-1 mb-3">
