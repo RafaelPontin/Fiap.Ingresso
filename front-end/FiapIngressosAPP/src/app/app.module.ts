@@ -11,7 +11,8 @@ import { EventoListaComponent } from './components/eventos/evento-lista/evento-l
 import { HttpClientModule } from '@angular/common/http';
 import { NovoEventoComponent } from './components/eventos/novo-evento/novo-evento.component';
 import { FormsModule } from '@angular/forms';
-
+import { PagamentoComponent } from './components/pagamento/pagamento.component';
+import {  NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -21,13 +22,15 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     EventosComponent,
     EventoListaComponent,
-    NovoEventoComponent
+    NovoEventoComponent,
+    PagamentoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
