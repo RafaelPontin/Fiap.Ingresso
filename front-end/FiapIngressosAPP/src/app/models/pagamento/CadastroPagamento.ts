@@ -1,10 +1,10 @@
 export interface CadastroPagamento
 {
-  IngressoId : string;
-  TipoPagamento: number;
-  ValorPagamento: number;
-  NumeroCartao?: string;
-  NomeCartao?: string;
-  VencimentoCartao?: string;
-  CodigoVerificador?: string;
+  ingressoId : string;
+  tipoPagamento: number;
+  valorPagamento: number;
+  numeroCartao?: string;
+  nomeCartao?: string;
+  vencimentoCartao?: string;
+  codigoVerificador?: string;
 }
