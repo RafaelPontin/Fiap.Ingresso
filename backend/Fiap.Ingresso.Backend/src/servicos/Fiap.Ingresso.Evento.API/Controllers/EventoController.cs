@@ -56,6 +56,17 @@ public class EventoController : BaseController
         return Ok(response);
     }
 
+    [HttpGet("Evento/{id:guid}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest("Informações inválidas");
+        }
+        var eventos = await _services.GetById(id);
+        return Ok(eventos);
+    }
+
     [HttpGet("Listar")]
     public async Task<IActionResult> ListarEventos()
     {
