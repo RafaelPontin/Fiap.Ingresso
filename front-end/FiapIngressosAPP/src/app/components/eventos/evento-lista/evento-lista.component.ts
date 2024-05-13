@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
 import { ListarEventos } from '../../../models/evento/ListarEventos';
@@ -12,9 +12,8 @@ export class EventoListaComponent {
 
   admin:boolean = true; // Definindo a variável admin como false
   eventoList: any[] = []; // Definindo o tipo de eventoList como array de objetos
-  stateSave = 'post'; // Definindo a variável stateSave como post
 
-  constructor(private eventoService: EventoService, private router : Router) { }
+  constructor(private eventoService: EventoService, private router : Router, private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
     this.getEventos();
@@ -34,23 +33,5 @@ export class EventoListaComponent {
   public novoEvento(): void {
     this.router.navigate(['eventos/novo']);
   }
-
-  // loadEvento(): void {
-  //   const personIdParam = this.route.snapshot.paramMap.get('id');
-
-  //   if (personIdParam !== null) {
-  //     this.stateSave = 'put';
-
-  //     this.listServices.getPersonById(personIdParam).subscribe(
-  //       (person: Person) => {
-  //         this.person = { ...person };
-  //         this.person.addressId = this.person.address.id;
-  //         this.person.companyId = this.person.company.id;
-  //         this.form.patchValue(this.person);
-  //       },
-  //       (error) => console.log(error)
-  //     );
-  //   }
-  // }
 
 }

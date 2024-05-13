@@ -9,52 +9,72 @@
 
 	<div class="col-md-6">
 
-    <form class="p-1">
+    <form [formGroup]="form" class="p-1" #registerForm="ngForm" (ngSubmit)="register()">
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Usuário</h3>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
           <label>Nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Primeiro nome" formControlName="nome" />
+          <input type="text" class="form-control" formControlName="nome"
+            [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" placeholder="Insira o Primeiro nome" />
+          <div class="invalid-feedback">
+            Primeiro Nome é obrigatório.
+          </div>
         </div>
         <div class="form-group col-sm-6">
           <label>CPF</label>
-          <input type="text" class="form-control" placeholder="Insira o Último nome" formControlName="cpf"/>
+          <input type="text" class="form-control" formControlName="cpf"
+            [ngClass]="{'is-invalid': f.cpf.errors && f.cpf.touched}" placeholder="Insira seu CPF" />
+          <div class="invalid-feedback">
+            CPF é obrigatório.
+          </div>
         </div>
       </div>
-      <div class="form-group col-sm-6">
-        <label>Email:</label>
-        <input class="form-control" type="text" placeholder="Insira o Nome Completo" formControlName="email"/>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-sm-6">
-          <label>Senha:</label>
-          <input class="form-control" type="password" placeholder="Digite uma Senha" formControlName="senha"/>
+      <div class="form-group">
+        <label for="">Email:</label>
+        <input class="form-control" type="text" formControlName="email"
+          [ngClass]="{'is-invalid': f.email.errors && f.email.touched}" placeholder="Insira o Nome Completo" />
+        <div *ngIf="f.email.errors?.required && f.email.touched" class="invalid-feedback">
+          e-mail é obrigatório.
         </div>
-        <div class="form-group col-sm-6">
-          <label>Confirmar Senha:</label>
-          <input class="form-control" type="password" placeholder="Confirme a Senha" formControlName="confirmacaoSenha"/>
-        </div>
-      </div>
-      <div class="form-row p-1 mb-3">
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="customCheck1">
-          <label class="custom-control-label">Eu concordo com os <a href="#">Termos de Uso</a>.</label>
+        <div *ngIf="f.email.errors?.email && f.email.touched" class="invalid-feedback">
+          Deve ser um e-mail válido.
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-12">
-          <button class="btn btn-lg btn-success btn-block px-5">
+        <div class="form-group col-sm-6">
+          <label for="">Senha:</label>
+          <input class="form-control" type="password" formControlName="password"
+            [ngClass]="{'is-invalid': f.password.errors && f.password.touched}" placeholder="Digite uma Senha" />
+          <div *ngIf="f.password.errors?.required && f.password.touched"
+          class="invalid-feedback">
+            Senha é obrigatório.
+          </div>
+          <div *ngIf="f.password.errors?.minlength && f.password.touched"
+          class="invalid-feedback">
+            Deve conter no mínimo 6 caracteres.
+          </div>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="">Confirmar Senha:</label>
+          <input class="form-control" type="password" formControlName="confirmePassword"
+            [ngClass]="{'is-invalid': f.confirmePassword.errors && f.confirmePassword.touched}" placeholder="Confirme a Senha" />
+          <div *ngIf="f.confirmePassword.errors?.required"
+            class="invalid-feedback">
+            Confirmar Senha é obrigatório.
+          </div>
+          <div *ngIf="f.confirmePassword.errors?.mustMatch"
+            class="invalid-feedback">
+            Repedir a senha é obrigatório.
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group pt-3 col-16">
+          <button [disabled]="registerForm.invalid" class="btn btn-lg btn-success btn-block px-5">
             Registar
           </button>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-12">
-          <a class="btn btn-link btn-block" routerLink="/user/login">
-            Já sou Cadastrado
-          </a>
         </div>
       </div>
     </form>

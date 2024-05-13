@@ -1,4 +1,4 @@
-export interface cadastroUser{
+export interface CadastroUser{
   "nome": string,
   "cpf": string,
   "email": string,

@@ -22,4 +22,5 @@ export class EventoService {
     return this.http.post(`${this.baseURL}Criar-Evento`, cadastraEvento)
   }
 
+
 }

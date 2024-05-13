@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
-import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CadastraEvento } from '../../../models/evento/CadastraEvento';
+import { ActivatedRoute } from '@angular/router';
+import { ListarEventos } from '../../../models/evento/ListarEventos';
 
 @Component({
   selector: 'app-novo-evento',
@@ -12,8 +14,9 @@ export class NovoEventoComponent {
 
   form!: FormGroup;
   novoEvento = {} as CadastraEvento;
+  stateSave = 'post';
 
-  constructor(private eventoService: EventoService, private formBuilder: FormBuilder) { }
+  constructor(private eventoService: EventoService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this. validation();
@@ -47,6 +50,25 @@ export class NovoEventoComponent {
       console.error('Erro ao criar evento:', error);
     });
   }
+
+  // loadEvento(): void {
+  //   const eventoIdParam = this.route.snapshot.paramMap.get('id');
+
+  //   if (eventoIdParam !== null) {
+  //   this.stateSave = 'put';
+
+  //        this.eventoService.getPersonById(eventoIdParam).subscribe(
+  //          (evento: ListarEventos) => {
+  //            this.evento = { ...evento };
+  //            this.evento.nome = this.evento.nome;
+  //            this.evento.dataInicio = this.evento.dataInicio;
+  //            this.form.patchValue(this.evento);
+  //          },
+  //         (error) => console.log(error)
+  //       );
+  //      }
+  //   }
+  // }
 
   resetForm() {
     this.form.reset(); // Resetar o formulário usando o método reset do FormGroup

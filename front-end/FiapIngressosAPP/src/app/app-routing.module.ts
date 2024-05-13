@@ -6,6 +6,8 @@ import { UserComponent } from './components/user/user.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { NovoEventoComponent } from './components/eventos/novo-evento/novo-evento.component';
 import { EventosComponent } from './components/eventos/eventos.component';
+import { AuthGuard } from './guard/auth.guard';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,8 +23,8 @@ const routes: Routes = [
   //     {
   //       path: 'eventos', component: EventosComponent,
   //       children: [
-  //         { path: 'detalhe/:id', component: EventoDetalheComponent },
-  //         { path: 'detalhe', component: EventoDetalheComponent },
+  //         { path: 'detalhe/:id', component: NovoEventoComponent },
+  //         { path: 'detalhe', component: NovoEventoComponent },
   //         { path: 'lista', component: EventoListaComponent },
   //       ],
   //     },
