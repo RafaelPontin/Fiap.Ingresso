@@ -2,6 +2,7 @@
 using Fiap.Ingresso.Evento.API.Infra;
 using Fiap.Ingresso.Evento.API.Services.Contracts;
 using Fiap.Ingresso.WebAPI.Core.Communication;
+using System.Runtime.Intrinsics.Arm;
 
 namespace Fiap.Ingresso.Evento.API.Services;
 
@@ -151,4 +152,21 @@ public class EventoService : IEventoService
         }
     }
 
+    public async Task<ResponseResult<Domain.Evento>> GetById(Guid Id)
+    {
+        try
+        {
+            var eventos = await _repository.GetEventoById(Id);
+            if (eventos is null) return  new ResponseResult<Domain.Evento>() { Status = 404 };
+            return new ResponseResult<Domain.Evento>()
+            {
+                Status = 200,
+                Data = eventos
+            };
+        }
+        catch (Exception e)
+        {
+            return new ResponseResult<Domain.Evento>() { Status = 500 };
+        }
+    }
 }

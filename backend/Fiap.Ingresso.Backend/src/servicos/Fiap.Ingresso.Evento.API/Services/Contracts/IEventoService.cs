@@ -9,4 +9,5 @@ public interface IEventoService
     Task<ResponseResult<bool>> AlterarEvento(AlterarEventoDTO dto);
     Task<ResponseResult<IList<EventoDTO>>> ListarEvento();
     Task<ResponseResult<Guid>> CancelaEvento(Guid id);
+    Task<ResponseResult<Domain.Evento>> GetById(Guid Id);
 }
