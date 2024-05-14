@@ -42,7 +42,7 @@ namespace Fiap.Ingresso.Usuario.API.Services
 
             ObterUsuarioResponse(response, novoUsuario.Data);
 
-            return response;            
+            return response;
         }
 
         private void ObterUsuarioResponse(ResponseResult<UsuarioResponse> response, Domain.Usuario usuario)
@@ -56,9 +56,9 @@ namespace Fiap.Ingresso.Usuario.API.Services
             };
         }
 
-        public async Task<ResponseResult<string>> Login(string email, string senha)
+        public async Task<ResponseResult<UsuarioLogadoResponse>> Login(string email, string senha)
         {
-            var response = new ResponseResult<string>();
+            var response = new ResponseResult<UsuarioLogadoResponse>();
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
             {
                 response.Status = 400;
@@ -75,8 +75,14 @@ namespace Fiap.Ingresso.Usuario.API.Services
             }
 
             var token = CodificarToken(usuario);
-            response.Data = token;
-           
+            response.Data = new UsuarioLogadoResponse
+            {
+                AccessToken = token,                
+                Email = usuario.Email,
+                Nome = usuario.Nome,
+                Id = usuario.Id
+            };
+
             return response;
         }
 
@@ -97,7 +103,7 @@ namespace Fiap.Ingresso.Usuario.API.Services
                 }),
                 Expires = DateTime.UtcNow.AddHours(_appSettings.ExpiracaoHoras),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            }) ;
+            });
 
             return tokenHandler.WriteToken(token);
         }
@@ -113,15 +119,15 @@ namespace Fiap.Ingresso.Usuario.API.Services
                 return response;
             }
 
-            var usuario = new Domain.Usuario();            
+            var usuario = new Domain.Usuario();
             usuario.CadastraUsuario(usuarioDto.Nome, usuarioDto.Email, usuarioDto.Cpf, usuarioDto.Senha);
             if (usuario.EhValido())
             {
-                response.Data = usuario; 
+                response.Data = usuario;
                 response.Status = 201;
                 return response;
             }
-            
+
             response.Status = 400;
             response.Erros = usuario.Erros;
 
@@ -140,7 +146,7 @@ namespace Fiap.Ingresso.Usuario.API.Services
 
             var response = new ResponseResult<UsuarioResponse>();
 
-            var usuarioEmail = ObterUserEmail();          
+            var usuarioEmail = ObterUserEmail();
 
             if (!await VerificarEmailCadastrado(usuarioEmail))
             {
