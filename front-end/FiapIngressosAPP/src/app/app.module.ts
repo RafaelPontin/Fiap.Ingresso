@@ -8,8 +8,15 @@ import { NavComponent } from './shared/nav/nav.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NovoEventoComponent } from './components/eventos/novo-evento/novo-evento.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegistrationComponent } from './components/user/registration/registration.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AccountService } from './services/account.service';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
+import { TokenService } from './services/token.service';
 import { FormsModule } from '@angular/forms';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
 import {  NgxMaskModule } from 'ngx-mask';
@@ -23,6 +30,9 @@ import {  NgxMaskModule } from 'ngx-mask';
     EventosComponent,
     EventoListaComponent,
     NovoEventoComponent,
+    RegistrationComponent,
+    PerfilComponent,
+    NovoEventoComponent,
     PagamentoComponent
   ],
   imports: [
@@ -30,9 +40,23 @@ import {  NgxMaskModule } from 'ngx-mask';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true
+    }),
+  ],
+  providers: [
+    TokenService,
+    AccountService,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
+    }
+    FormsModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

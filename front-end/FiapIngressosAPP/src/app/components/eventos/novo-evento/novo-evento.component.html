@@ -1,64 +1,100 @@
 <div class="container card rounded shadow-sm p-3">
   <h2>Criar Novo Evento</h2>
-  <form (ngSubmit)="criarEvento()">
+  <form [formGroup]="form" #novoeventoForm="ngForm" (ngSubmit)="criarEvento()">
     <div class="form-group">
-      <label for="nome">Nome:</label>
-      <input type="text" class="form-control" id="nome" [(ngModel)]="novoEvento.Nome" name="nome">
+      <label for="nome">Nome do Evento:</label>
+      <input type="text" class="form-control" id="nome" formControlName="nome" [ngClass]="{'is-invalid': form.get('nome')?.errors && form.get('nome')?.touched}">
+      <div class="invalid-feedback">
+        Nome do Evento é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="dataInicio">Data de Início:</label>
-      <input type="date" class="form-control" id="dataInicio" [(ngModel)]="novoEvento.DataInicio" name="dataInicio">
+      <input type="date" class="form-control" id="dataInicio" formControlName="dataInicio" [ngClass]="{'is-invalid': form.get('dataInicio')?.errors && form.get('dataInicio')?.touched}">
+      <div class="invalid-feedback">
+        Data de Início é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="dataFim">Data de Fim:</label>
-      <input type="date" class="form-control" id="dataFim" [(ngModel)]="novoEvento.DataFim" name="dataFim">
+      <input type="date" class="form-control" id="dataFim" formControlName="dataFim" [ngClass]="{'is-invalid': form.get('dataFim')?.errors && form.get('dataFim')?.touched}">
+      <div class="invalid-feedback">
+        Data de Fim é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="dataEvento">Data do Evento:</label>
-      <input type="date" class="form-control" id="dataEvento" [(ngModel)]="novoEvento.DataEvento" name="dataEvento">
+      <input type="date" class="form-control" id="dataEvento" formControlName="dataEvento" [ngClass]="{'is-invalid': form.get('dataEvento')?.errors && form.get('dataEvento')?.touched}">
+      <div class="invalid-feedback">
+        Data do Evento é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="publicoMaximo">Público Máximo:</label>
-      <input type="number" class="form-control" id="publicoMaximo" [(ngModel)]="novoEvento.PublicoMaximo" name="publicoMaximo">
+      <input type="number" class="form-control" id="publicoMaximo" formControlName="publicoMaximo" [ngClass]="{'is-invalid': form.get('publicoMaximo')?.errors && form.get('publicoMaximo')?.touched}">
+      <div class="invalid-feedback">
+        Público Máximo é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="ativo">Ativo:</label>
-      <select class="form-control" id="ativo" [(ngModel)]="novoEvento.Ativo" name="ativo">
+      <select class="form-control" id="ativo" formControlName="ativo" [ngClass]="{'is-invalid': form.get('ativo')?.errors && form.get('ativo')?.touched}">
         <option value="1">Sim</option>
         <option value="0">Não</option>
+        <div class="invalid-feedback">
+          Ativo é obrigatório.
+        </div>
       </select>
     </div>
     <div class="form-group">
       <label for="logradouro">Logradouro:</label>
-      <input type="text" class="form-control" id="logradouro" [(ngModel)]="novoEvento.Logradouro" name="logradouro">
+      <input type="text" class="form-control" id="logradouro" formControlName="logradouro" [ngClass]="{'is-invalid': form.get('logradouro')?.errors && form.get('logradouro')?.touched}">
+      <div class="invalid-feedback">
+        Logradouro é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="numero">Número:</label>
-      <input type="text" class="form-control" id="numero" [(ngModel)]="novoEvento.Numero" name="numero">
+      <input type="text" class="form-control" id="numero" formControlName="numero" [ngClass]="{'is-invalid': form.get('numero')?.errors && form.get('numero')?.touched}">
+      <div class="invalid-feedback">
+        Número é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="cidade">Cidade:</label>
-      <input type="text" class="form-control" id="cidade" [(ngModel)]="novoEvento.Cidade" name="cidade">
+      <input type="text" class="form-control" id="cidade" formControlName="cidade" [ngClass]="{'is-invalid': form.get('cidade')?.errors && form.get('cidade')?.touched}">
+      <div class="invalid-feedback">
+        Cidade é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="bairro">Bairro:</label>
-      <input type="text" class="form-control" id="bairro" [(ngModel)]="novoEvento.Bairro" name="bairro">
+      <input type="text" class="form-control" id="bairro" formControlName="bairro" [ngClass]="{'is-invalid': form.get('bairro')?.errors && form.get('bairro')?.touched}">
+      <div class="invalid-feedback">
+        Bairro é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="cep">CEP:</label>
-      <input type="text" class="form-control" id="cep" [(ngModel)]="novoEvento.Cep" name="cep">
+      <input type="text" class="form-control" id="cep" formControlName="cep" [ngClass]="{'is-invalid': form.get('cep')?.errors && form.get('cep')?.touched}">
+      <div class="invalid-feedback">
+        CEP é obrigatório.
+      </div>
     </div>
     <div class="form-group">
       <label for="descricao">Descrição:</label>
-      <textarea class="form-control" id="descricao" [(ngModel)]="novoEvento.Descricao" name="descricao"></textarea>
+      <textarea class="form-control" id="descricao" formControlName="descricao"></textarea>
     </div>
     <div class="form-group">
       <label for="siteEvento">Site do Evento:</label>
-      <input type="text" class="form-control" id="siteEvento" [(ngModel)]="novoEvento.SiteEvento" name="siteEvento">
+      <input type="text" class="form-control" id="siteEvento" formControlName="siteEvento">
     </div>
     <div class="form-group">
       <label for="valor">Valor:</label>
-      <input type="number" class="form-control" id="valor" [(ngModel)]="novoEvento.Valor" name="valor">
+      <input type="number" class="form-control" id="valor" formControlName="valor" [ngClass]="{'is-invalid': form.get('valor')?.errors && form.get('valor')?.touched}">
+      <div class="invalid-feedback">
+        Valor é obrigatório.
+      </div>
     </div>
     <button type="submit" class="btn btn-primary">Criar Evento</button>
   </form>

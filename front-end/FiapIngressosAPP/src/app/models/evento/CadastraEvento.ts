@@ -1,18 +1,18 @@
 export interface CadastraEvento {
 
-    Nome : string;
-    DataInicio : Date;
-    DataFim : Date;
-    DataEvento : Date;
-    PublicoMaximo : number;
-    Ativo : number;
-    Logradouro : string;
-    Numero : string;
-    Cidade : string;
-    Bairro : string;
-    Cep : string;
-    Descricao? : string;
-    SiteEvento? : string;
-    Valor : number;
+    nome : string;
+    dataInicio : Date;
+    dataFim : Date;
+    dataEvento : Date;
+    publicoMaximo : number;
+    ativo : number;
+    logradouro : string;
+    numero : string;
+    cidade : string;
+    bairro : string;
+    cep : string;
+    descricao? : string;
+    siteEvento? : string;
+    valor : number;
 
 }

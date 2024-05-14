@@ -70,7 +70,7 @@ public class EventoController : BaseController
     [HttpGet("Listar")]
     public async Task<IActionResult> ListarEventos()
     {
-        var eventos = _services.ListarEvento();
+        var eventos = await _services.ListarEvento();
         return Ok(eventos);
     }
 
