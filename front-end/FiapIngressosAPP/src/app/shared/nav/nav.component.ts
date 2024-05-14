@@ -1,10 +1,30 @@
-import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../services/account.service';
+
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.scss'
+  styleUrls: ['./nav.component.scss']
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
+  isCollapsed = true;
+
+  user$ = this.accountService.retornarUser();
+
+  constructor(public accountService: AccountService,private router: Router) { }
+
+  ngOnInit(): void {
+  }
+
+  logout() {
+    this.accountService.logout();
+    this.router.navigate(['user/login'])
+  }
+
+  showMenu(): boolean {
+    return this.router.url !== '/user/login';
+  }
 
 }

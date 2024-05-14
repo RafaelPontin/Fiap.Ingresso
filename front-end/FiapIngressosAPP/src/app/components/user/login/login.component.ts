@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   public login():void {
-    this.accountService.login(this.loginUser).subscribe(
+    console.log(this.loginUser)
+    this.accountService.login(this.loginUser as LoginUser).subscribe(
       () => {this.router.navigateByUrl('/dashboard')},
       (error:any) => {
         if(error.status == 401)

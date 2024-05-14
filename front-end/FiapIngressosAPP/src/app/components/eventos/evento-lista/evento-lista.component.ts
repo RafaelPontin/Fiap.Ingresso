@@ -10,7 +10,7 @@ import { ListarEventos } from '../../../models/evento/ListarEventos';
 })
 export class EventoListaComponent {
 
-  admin:boolean = true; // Definindo a variável admin como false
+  admin : boolean = true; // Definindo a variável admin como false
   eventoList: any[] = []; // Definindo o tipo de eventoList como array de objetos
 
   constructor(private eventoService: EventoService, private router : Router, private route: ActivatedRoute,) { }

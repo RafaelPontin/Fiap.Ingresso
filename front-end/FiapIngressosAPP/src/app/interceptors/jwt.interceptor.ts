@@ -6,32 +6,23 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { AccountService } from '../services/account.service';
-import { User } from '../models/user/user';
+import { TokenService } from '../services/token.service';
+
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(private accountService:AccountService) {}
+  constructor(private tokenService: TokenService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let currentUser : User;
-
-    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
-      currentUser = user
-
-      if(currentUser) {
-        request = request.clone({
-            setHeaders: {
-              Authorization: `Bearer ${currentUser.token}`
-            }
-          }
-        );
-      }
-    });
-
-
+    if(this.tokenService.possuiToken()) {
+      const token = this.tokenService.retornarToken();
+      request = request.clone({
+        setHeaders: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+    }
     return next.handle(request);
   }
 }

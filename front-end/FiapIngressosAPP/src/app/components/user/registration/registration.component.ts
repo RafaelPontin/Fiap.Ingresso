@@ -29,7 +29,7 @@ export class RegistrationComponent implements OnInit {
   private validation(): void {
 
     const formOptions: AbstractControlOptions = {
-      validators: ValidatorField.MustMatch('password', 'confirmePassword')
+      validators: ValidatorField.MustMatch('senha', 'confirmacaoSenha')
     };
 
     this.form = this.fb.group({
@@ -38,16 +38,17 @@ export class RegistrationComponent implements OnInit {
       email: ['',
         [Validators.required, Validators.email]
       ],
-      password: ['',
+      senha: ['',
         [Validators.required, Validators.minLength(6)]
       ],
-      confirmePassword: ['', Validators.required],
+      confirmacaoSenha: ['', Validators.required],
     }, formOptions);
   }
 
   register():void {
     this.user ={...this.form.value};
-    this.accountService.post(this.user).subscribe(
+    console.log(this.user)
+    this.accountService.registration(this.user as CadastroUser).subscribe(
       ()=> this.router.navigateByUrl('/'),
       (error: any)=> this.toaster.error(error.error)
     )

@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AccountService } from './services/account.service';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
+import { TokenService } from './services/token.service';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { PerfilComponent } from './components/user/perfil/perfil.component';
     }),
   ],
   providers: [
+    TokenService,
     AccountService,
     {
       provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true

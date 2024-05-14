@@ -1,43 +1,66 @@
+import { jwtDecode } from 'jwt-decode';
 import { LoginUser } from './../models/user/loginUser';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CadastroUser } from '../models/user/cadastroUser';
-import { Observable, ReplaySubject, map, take } from 'rxjs';
-import { User } from '../models/user/user';
+import { BehaviorSubject, Observable, ReplaySubject, map, take, tap } from 'rxjs';
+import { RetornoUser } from '../models/user/retornoUser';
+import { TokenService } from './token.service';
+import { DecodificaJwt } from '../models/jwt/decodificaJwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  private currentUserSource = new ReplaySubject<User>(1);
-  public currentUser$ = this.currentUserSource.asObservable();
+  private userSubject = new ReplaySubject<DecodificaJwt | null>(1);
+  user$ = this.userSubject.asObservable();
 
-  baseURL = 'https://localhost:7128/';
+  baseURL = 'https://localhost:7142/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenService: TokenService) {
+    if(this.tokenService.possuiToken()) {
+      this.decodificarJWT();
+    }
+   }
 
-  public post(cadastroUser: CadastroUser) {
+  public registration(cadastroUser: CadastroUser) {
     return this.http.post(`${this.baseURL}Criar-Usuario`, cadastroUser)
   }
 
-  public login(model: any):Observable<void>{
-    return this.http.post<User>(this.baseURL+'login', model).pipe(take(1),map((response : User)=> {
-      const user = response;
-      if(user){
-        this.setCurrentUser(user)
-      }
+  public login(model: LoginUser) {
+      return this.http.post<RetornoUser>(this.baseURL+'Login', model).pipe(tap((response) => {
+      const authToken = response.data || '';
+      this.tokenService.salvarToken(authToken);
+      this.decodificarJWT();
     }));
   }
 
-  logout():void{
-    localStorage.removeItem('user');
-    this.currentUserSource.next(null as any);
-    this.currentUserSource.complete();
+  estaLogado() {
+    return this.tokenService.possuiToken();
   }
 
-  public setCurrentUser(user:User):void{
-    localStorage.setItem('user', JSON.stringify(user));
-    this.currentUserSource.next(user)
+  private decodificarJWT() {
+    const token = this.tokenService.retornarToken();
+    const user = jwtDecode(token) as DecodificaJwt;
+    this.userSubject.next(user);
+    console.log("decodificarjwt"+ user);
+  }
+
+  retornarUser() {
+    return this.userSubject.asObservable();
+  }
+
+  // buscarCadastro(): Observable<User> {
+  //   return this.http.get<User>(`${this.baseURL}/Buscar-Usuario`);
+  // }
+
+  // editarCadastro(pessoaUsuaria: User): Observable<User> {
+  //   return this.http.patch<User>(`${this.baseURL}/Alterar-Usuario`, pessoaUsuaria);
+  // }
+
+  logout() {
+    this.tokenService.excluirToken();
+    this.userSubject.next(null);
   }
 
 }

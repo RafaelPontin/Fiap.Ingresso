@@ -6,7 +6,8 @@
         <a class="nav-link active " aria-current="page" href="home">Eventos</a>
       </div>
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" routerLink="/user/login">Login</a>
+        <a *ngIf="user$ |async as DecodificaJwt" class="nav-link active" aria-current="page" (click)="logout()">Logout</a>
+        <a *ngIf="(user$ | async) === null" class="nav-link active" aria-current="page" routerLink="/user/login">Login</a>
       </div>
     </div>
   </div>
