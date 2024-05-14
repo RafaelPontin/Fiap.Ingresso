@@ -7,6 +7,7 @@ public class Usuario
     public string Email { get; private set; }
     public string Cpf { get; private set; }
     public string Senha { get; private set; }   
+    public bool IsAdmin { get; private set; }
     
     public List<string> Erros { get; }
 
@@ -14,6 +15,7 @@ public class Usuario
     public Usuario()
     {
         Erros = new List<string>();
+        IsAdmin = false;
     }
 
     public void CadastraUsuario(string nome, string email, string cpf, string senha)
