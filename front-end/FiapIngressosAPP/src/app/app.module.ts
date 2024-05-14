@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
@@ -13,13 +12,9 @@ import { NovoEventoComponent } from './components/eventos/novo-evento/novo-event
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { ToastrModule } from 'ngx-toastr';
-import { AccountService } from './services/account.service';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
-import { TokenService } from './services/token.service';
-import { FormsModule } from '@angular/forms';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
-import {  NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -48,15 +43,11 @@ import {  NgxMaskModule } from 'ngx-mask';
       progressBar: true
     }),
   ],
-  providers: [
-    TokenService,
-    AccountService,
-    {
-      provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
-    }
-    FormsModule,
-    NgxMaskModule.forRoot()
-  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
