@@ -1,6 +1,4 @@
-﻿using Fiap.Ingresso.Evento.API.Domain;
-using System;
-using domain = Fiap.Ingresso.Evento.API.Domain;
+﻿using domain = Fiap.Ingresso.Evento.API.Domain;
 
 namespace Fiap.Ingresso.Evento.API.Data.Seed;
 

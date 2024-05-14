@@ -1,4 +1,5 @@
 ﻿using Fiap.Ingresso.Usuario.API.Data;
+using Fiap.Ingresso.Usuario.API.Data.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -84,6 +85,7 @@ namespace Fiap.Ingresso.Usuario.API.Configuration
                     .GetRequiredService<UsuarioContext>();
 
                 dbContext.Database.Migrate();
+                UsuarioSeed.Seed(dbContext);
             }
         }
     }
