@@ -26,7 +26,7 @@ public static class ApiConfig
 
         services.AddControllers();
         services.AddSwaggerGen();
-        services.AddSwagger();
+        //services.AddSwagger();
         services.AddCors(options =>
         {
             options.AddPolicy("Total",
