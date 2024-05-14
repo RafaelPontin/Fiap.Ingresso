@@ -4,6 +4,7 @@ using Fiap.Ingresso.Ingresso.API.Infra.Contratos;
 using Fiap.Ingresso.Ingresso.API.Services;
 using Fiap.Ingresso.Ingresso.API.Services.Contratos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace Fiap.Ingresso.Ingresso.API.Configuration;
 
@@ -24,7 +25,8 @@ public static class ApiConfig
         services.AddScoped<IIngressoService, IngressoService>();
 
         services.AddControllers();
-
+        services.AddSwaggerGen();
+        services.AddSwagger();
         services.AddCors(options =>
         {
             options.AddPolicy("Total",
@@ -50,6 +52,36 @@ public static class ApiConfig
         app.UseCors("Total");
 
         app.MapControllers();
+    }
+
+    private static void AddSwagger(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(c =>
+        {
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Description = "JWT Authorization",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                BearerFormat = "JWT"
+            });
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+        });
     }
 
 }

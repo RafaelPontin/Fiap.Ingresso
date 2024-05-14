@@ -7,6 +7,6 @@ namespace Fiap.Ingresso.Usuario.API.Services.Contracts
     {
         Task<ResponseResult<UsuarioResponse>> CadastrarUsuario(CadastrarUsuarioDto usuario);        
         Task<ResponseResult<UsuarioResponse>> AlterarUsuario(AlterarCadastroDto usuario);        
-        Task<ResponseResult<string>> Login(string email, string senha);        
+        Task<ResponseResult<UsuarioLogadoResponse>> Login(string email, string senha);        
     }
 }

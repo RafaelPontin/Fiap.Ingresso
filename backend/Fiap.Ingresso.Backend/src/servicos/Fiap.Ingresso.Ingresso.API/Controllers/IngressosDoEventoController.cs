@@ -1,10 +1,12 @@
 ﻿using Fiap.Ingresso.Ingresso.API.DTOs;
 using Fiap.Ingresso.Ingresso.API.Services.Contratos;
 using Fiap.Ingresso.WebAPI.Core.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fiap.Ingresso.Ingresso.API.Controllers;
 
+//[Authorize]
 public class IngressosDoEventoController : BaseController
 {
     private readonly IIngressosDoEventoService _services;
