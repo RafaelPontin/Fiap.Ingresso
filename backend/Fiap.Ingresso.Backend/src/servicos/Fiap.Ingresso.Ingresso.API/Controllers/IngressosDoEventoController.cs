@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fiap.Ingresso.Ingresso.API.Controllers;
 
-[Authorize]
+//[Authorize]
 public class IngressosDoEventoController : BaseController
 {
     private readonly IIngressosDoEventoService _services;
