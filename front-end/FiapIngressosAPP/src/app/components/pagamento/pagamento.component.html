@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="card rounded shadow-sm mt-4 pb-4">
+    <div class="form-group">
+      <label class="form-label">Forma de pagamento</label>
+      <select [(ngModel)]="pagamento.tipoPagamento" class="form-control" (change)="selectionMetodoPagament($event)">
+        <option Value="1" selected>Boleto</option>
+        <option value="2">Cartão</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Número do Cartão</label>
+      <input class="form-control" placeholder="1111.1111.1111.1111"
+        mask="0000.0000.0000.0000" type="text" [disabled]="habilitaCartao"
+        [(ngModel)]="pagamento.numeroCartao"/>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Nome do Cartão</label>
+      <input class="form-control" placeholder="Fulano da Silve"
+      type="text" [disabled]="habilitaCartao" [(ngModel)]="pagamento.nomeCartao" maxlength="40"/>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Vencimento do Cartão</label>
+      <input class="form-control" placeholder="00/00" mask="00/00"
+      type="text" [disabled]="habilitaCartao" [(ngModel)]="pagamento.vencimentoCartao"/>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Código Verificado</label>
+      <input class="form-control" placeholder="000" mask="000"
+      type="text" [disabled]="habilitaCartao" [(ngModel)]="pagamento.codigoVerificador" />
+    </div>
+
+    <div class="form-group mt-3 div-botaopagamento">
+      <button type="button" class="btn btn-primary"
+              (click)="fazerPagamento($event)" [disabled]="desabilitaBotao">Pagamento</button>
+    </div>
+
+    <div class="form-group" *ngIf="habilitaMensagemAcordo">
+      <div class="alert alert-primary" role="alert">
+        {{mensagemVenda}}
+      </div>
+    </div>
+
+  </div>
+</div>

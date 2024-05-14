@@ -17,7 +17,9 @@ import { AccountService } from './services/account.service';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { TokenService } from './services/token.service';
-
+import { FormsModule } from '@angular/forms';
+import { PagamentoComponent } from './components/pagamento/pagamento.component';
+import {  NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { TokenService } from './services/token.service';
     NovoEventoComponent,
     RegistrationComponent,
     PerfilComponent,
+    NovoEventoComponent,
+    PagamentoComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,8 @@ import { TokenService } from './services/token.service';
     {
       provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
     }
+    FormsModule,
+    NgxMaskModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
