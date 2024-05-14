@@ -80,7 +80,8 @@ namespace Fiap.Ingresso.Usuario.API.Services
                 AccessToken = token,                
                 Email = usuario.Email,
                 Nome = usuario.Nome,
-                Id = usuario.Id
+                Id = usuario.Id,
+                IsAdmin = usuario.IsAdmin
             };
 
             return response;
@@ -98,8 +99,8 @@ namespace Fiap.Ingresso.Usuario.API.Services
                 {
                     new Claim(ClaimTypes.Name, usuario.Nome.ToString()),
                     new Claim(JwtRegisteredClaimNames.Sub, usuario.Id.ToString()),
-                    new Claim(JwtRegisteredClaimNames.Email, usuario.Email.ToString()),
-                    new Claim(ClaimTypes.Role, "Usuario")
+                    new Claim(JwtRegisteredClaimNames.Email, usuario.Email.ToString()),                    
+                    new Claim("IsAdmin", usuario.IsAdmin.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(_appSettings.ExpiracaoHoras),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
