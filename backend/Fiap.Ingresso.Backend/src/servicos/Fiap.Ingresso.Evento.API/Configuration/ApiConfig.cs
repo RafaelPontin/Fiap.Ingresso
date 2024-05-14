@@ -1,4 +1,5 @@
 ﻿using Fiap.Ingresso.Evento.API.Data;
+using Fiap.Ingresso.Evento.API.Data.Seed;
 using Fiap.Ingresso.Evento.API.Infra;
 using Fiap.Ingresso.Evento.API.Services;
 using Fiap.Ingresso.Evento.API.Services.Contracts;
@@ -44,6 +45,20 @@ public static class ApiConfig
         app.UseCors("Total");
 
         app.MapControllers();
+        app.MigrateDatabase();
+    }
+
+    public static void MigrateDatabase(this WebApplication app)
+    {
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider
+                .GetRequiredService<EventoContext>();
+
+            dbContext.Database.Migrate();
+
+            EventoSeed.Seed(dbContext);
+        }
     }
 
 }

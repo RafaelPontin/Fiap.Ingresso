@@ -44,6 +44,7 @@ namespace Fiap.Ingresso.Usuario.API.Configuration
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
+            app.MigrateDatabase();
         }
         private static void AddSwagger(this IServiceCollection services)
         {
@@ -73,6 +74,17 @@ namespace Fiap.Ingresso.Usuario.API.Configuration
                     }
                 });
             });
+        }
+
+        public static void MigrateDatabase(this WebApplication app)
+        {
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider
+                    .GetRequiredService<UsuarioContext>();
+
+                dbContext.Database.Migrate();
+            }
         }
     }
 }

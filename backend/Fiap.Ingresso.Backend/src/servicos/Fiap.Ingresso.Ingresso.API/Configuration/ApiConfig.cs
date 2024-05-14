@@ -52,6 +52,7 @@ public static class ApiConfig
         app.UseCors("Total");
 
         app.MapControllers();
+        app.MigrateDatabase();
     }
 
     private static void AddSwagger(this IServiceCollection services)
@@ -82,6 +83,17 @@ public static class ApiConfig
                     }
                 });
         });
+    }
+
+    public static void MigrateDatabase(this WebApplication app)
+    {
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider
+                .GetRequiredService<IngressoContext>();
+
+            dbContext.Database.Migrate();
+        }
     }
 
 }
