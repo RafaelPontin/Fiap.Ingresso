@@ -15,11 +15,14 @@ public class IngressoServiceTest
     [Fact]
     public async Task DeveCadastrarIngresso()
     {
-        var ingressoService = new IngressoService(_ingressoRepositoryMock.Object, _ingressosDoEventoRepositoryMock.Object, _validarPagamentoServiceMock.Object); ;
         Guid ingressoId = Guid.NewGuid();
+        Guid pagamentoId = Guid.NewGuid();
+        _validarPagamentoServiceMock.Setup(x => x.ValidarPagamento(pagamentoId)).ReturnsAsync(true);
+        var ingressoService = new IngressoService(_ingressoRepositoryMock.Object, _ingressosDoEventoRepositoryMock.Object, _validarPagamentoServiceMock.Object); 
+        
         _ingressosDoEventoRepositoryMock.Setup(x => x.ObterIngressosDoEventoPorId(ingressoId)).ReturnsAsync(new IngressosDoEvento(Guid.NewGuid(), 10, 5, 10, DateTime.Now.AddDays(10)));
-
-        var dto = new IngressoDto() { Quantidade = 2, UsuarioId = Guid.NewGuid() };
+        
+        var dto = new IngressoDto() { Quantidade = 2, UsuarioId = Guid.NewGuid(), PagamentoId = pagamentoId};
 
         var result = await ingressoService.ComprarIngresso(ingressoId, dto.UsuarioId, dto.Quantidade, dto.PagamentoId);
 
@@ -51,7 +54,10 @@ public class IngressoServiceTest
         Guid ingressoId = Guid.NewGuid();
         _ingressosDoEventoRepositoryMock.Setup(x => x.ObterIngressosDoEventoPorId(ingressoId)).ReturnsAsync(new IngressosDoEvento(Guid.NewGuid(), 10, 5, 10, DateTime.Now.AddDays(10)));
 
-        var dto = new IngressoDto() { Quantidade = 2, UsuarioId = Guid.NewGuid() };
+        Guid pagamentoId = Guid.NewGuid();
+        _validarPagamentoServiceMock.Setup(x => x.ValidarPagamento(pagamentoId)).ReturnsAsync(true);
+
+        var dto = new IngressoDto() { Quantidade = 2, UsuarioId = Guid.NewGuid(), PagamentoId = pagamentoId };
 
         var result = await ingressoService.ComprarIngresso(ingressoId, dto.UsuarioId, dto.Quantidade, dto.PagamentoId);
 
