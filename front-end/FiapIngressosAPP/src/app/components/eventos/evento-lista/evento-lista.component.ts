@@ -1,3 +1,6 @@
+import { TokenService } from './../../../services/token.service';
+import { User } from './../../../models/user/user';
+import { AccountService } from './../../../services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
@@ -10,10 +13,11 @@ import { ListarEventos } from '../../../models/evento/ListarEventos';
 })
 export class EventoListaComponent {
 
-  admin : boolean = true; // Definindo a variável admin como false
-  eventoList: any[] = []; // Definindo o tipo de eventoList como array de objetos
+  eventoList: any[] = [];
 
-  constructor(private eventoService: EventoService, private router : Router, private route: ActivatedRoute,) { }
+  constructor(private eventoService: EventoService, private router : Router, private route: ActivatedRoute, public tokenService : TokenService)
+  {
+  }
 
   ngOnInit(): void {
     this.getEventos();
@@ -21,7 +25,6 @@ export class EventoListaComponent {
 
   public getEventos() {
     this.eventoService.get().subscribe((data: ListarEventos) => {
-      console.log(data);
       this.eventoList = data.data;
     });
   }

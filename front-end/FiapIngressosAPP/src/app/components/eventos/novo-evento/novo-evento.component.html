@@ -1,6 +1,7 @@
 <div class="container card rounded shadow-sm p-3">
-  <h2>Criar Novo Evento</h2>
-  <form [formGroup]="form" #novoeventoForm="ngForm" (ngSubmit)="criarEvento()">
+  <h2 *ngIf="stateSave === 'post'">Criar Novo Evento</h2>
+  <h2 *ngIf="stateSave === 'put'">Editar Evento</h2>
+  <form [formGroup]="form" #novoeventoForm="ngForm" (ngSubmit)="salvarEvento()">
     <div class="form-group">
       <label for="nome">Nome do Evento:</label>
       <input type="text" class="form-control" id="nome" formControlName="nome" [ngClass]="{'is-invalid': form.get('nome')?.errors && form.get('nome')?.touched}">
@@ -96,6 +97,7 @@
         Valor é obrigatório.
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Criar Evento</button>
+    <button *ngIf="stateSave === 'post'" type="submit" class="btn mt-3 btn-primary">Criar Evento</button>
+    <button *ngIf="stateSave === 'put'" type="submit" class="btn mt-3 btn-primary">Salvar Evento</button>
   </form>
 </div>

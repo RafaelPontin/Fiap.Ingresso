@@ -14,7 +14,7 @@ export class TokenService {
     localStorage.removeItem("user")
   }
 
-  retornarToken(): User | null {
+  retornarUser(): User | null {
     const userString: string | null = localStorage.getItem('user');
     if (userString) {
       try {
@@ -30,7 +30,7 @@ export class TokenService {
   }
 
   possuiToken() {
-    return !!this.retornarToken();
+    return !!this.retornarUser();
   }
 
 

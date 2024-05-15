@@ -5,6 +5,7 @@ import { CadastroUser } from "../../../models/user/cadastroUser";
 import { Component, OnInit } from "@angular/core";
 import { ValidatorField } from "../../../helpers/ValidatorField";
 import { ToastrService } from "ngx-toastr";
+import { RetornoUser } from "../../../models/user/retornoUser";
 
 
 @Component({
@@ -47,10 +48,13 @@ export class RegistrationComponent implements OnInit {
 
   register():void {
     this.user ={...this.form.value};
-    console.log(this.user)
-    this.accountService.registration(this.user as CadastroUser).subscribe(
-      ()=> this.router.navigateByUrl('/'),
-      (error: any)=> this.toaster.error(error.error)
+    this.accountService.registration(this.user as CadastroUser).subscribe((data : any) => {
+        if(data.status == 200){
+          this.toaster.success('Cadastro realizado com sucesso');
+          this.router.navigateByUrl('/');
+        } else {
+          this.toaster.error('Erro ao cadastrar', 'Erro');
+        }}
     )
   }
 

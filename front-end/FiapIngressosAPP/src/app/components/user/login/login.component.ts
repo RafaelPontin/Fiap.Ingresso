@@ -13,22 +13,19 @@ export class LoginComponent implements OnInit {
 
   loginUser = {} as LoginUser;
 
-  constructor(private accountService:AccountService, private router:Router, private toaster:ToastrService) { }
+  constructor(private accountService:AccountService, private router:Router, private toaster : ToastrService) { }
 
   ngOnInit(): void {}
 
   public login():void {
     this.accountService.login(this.loginUser as LoginUser).subscribe(
-      () => {this.router.navigateByUrl('/home')},
-      (error:any) => {
-        if(error.status == 401)
+      () => {
+        if(this.accountService.estaLogado())
         {
+          this.router.navigateByUrl('/home')
+          this.toaster.success('Usuário logado com sucesso!', 'Sucesso');
+        } else {
           this.toaster.error('Usuário ou senha inválidos', 'Erro');
-        }
-        else
-        {
-          this.toaster.error('Usuário ou senha inválidos', 'Erro');
-          console.error(error)
         }
       }
     );

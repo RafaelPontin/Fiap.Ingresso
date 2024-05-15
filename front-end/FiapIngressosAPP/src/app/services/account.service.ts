@@ -1,9 +1,8 @@
-import { jwtDecode } from 'jwt-decode';
 import { LoginUser } from './../models/user/loginUser';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CadastroUser } from '../models/user/cadastroUser';
-import { BehaviorSubject, Observable, ReplaySubject, map, take, tap } from 'rxjs';
+import { ReplaySubject, tap } from 'rxjs';
 import { RetornoUser } from '../models/user/retornoUser';
 import { TokenService } from './token.service';
 import { User } from '../models/user/user';
@@ -30,10 +29,12 @@ export class AccountService {
 
   public login(model: LoginUser) {
       return this.http.post<RetornoUser>(this.baseURL+'Login', model).pipe(tap((response) => {
-      console.log(response);
       const user = response.data || '';
-      this.tokenService.salvarToken(user as User);
-      this.userSubject.next(user as User);
+      console.log(user);
+      if(user.accessToken !== null) {
+        this.tokenService.salvarToken(user as User);
+        this.userSubject.next(user as User);
+      }
     }));
   }
 
@@ -42,7 +43,7 @@ export class AccountService {
   }
 
   private recuperaUser() {
-     const user = this.tokenService.retornarToken();
+     const user = this.tokenService.retornarUser();
      this.userSubject.next(user as User);
   }
 

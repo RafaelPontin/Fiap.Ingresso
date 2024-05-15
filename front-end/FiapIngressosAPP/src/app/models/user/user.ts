@@ -1,7 +1,7 @@
 export interface User {
-  Id: string
-  Nome: string
-  Email: string
-  AccessToken: string
-  IsAdmin: boolean
+  id: string
+  nome: string
+  email: string
+  accessToken: string
+  isAdmin: boolean
 }

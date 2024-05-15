@@ -6,6 +6,7 @@
         <a class="nav-link active " aria-current="page" href="home">Eventos</a>
       </div>
       <div class="navbar-nav">
+        <a *ngIf="accountService.user$ | async as User" class="nav-link active" aria-current="page" routerLink="/user/meus-ingressos">Meus Ingressos</a>
         <a *ngIf="accountService.user$ |async as User" class="nav-link active" aria-current="page" (click)="logout()">Logout</a>
         <a *ngIf="(accountService.user$ | async) === null" class="nav-link active" aria-current="page" routerLink="/user/login">Login</a>
       </div>
