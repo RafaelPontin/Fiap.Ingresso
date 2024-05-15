@@ -10,6 +10,7 @@ import { DadosEventos } from '../models/evento/DadosEventos';
 })
 export class EventoService {
 
+
   baseURL = 'https://localhost:7128/';
 
   constructor(private http: HttpClient) { }
@@ -22,5 +23,11 @@ export class EventoService {
     return this.http.post(`${this.baseURL}Criar-Evento`, cadastraEvento)
   }
 
+  public getById(id: string) : Observable<ListarEventos>{
+    return this.http.get<ListarEventos>(`${this.baseURL}Evento/${id}`)
+  }
 
+  public put(evento: DadosEventos) {
+    return this.http.put(`${this.baseURL}Alterar-Evento`, evento)
+  }
 }

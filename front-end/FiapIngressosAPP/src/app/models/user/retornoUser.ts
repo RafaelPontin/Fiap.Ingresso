@@ -1,5 +1,7 @@
+import { User } from "./user";
+
 export interface RetornoUser{
-  "data": string,
+  "data": User,
   "title": string,
   "status": number,
   "erros": []

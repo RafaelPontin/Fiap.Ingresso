@@ -8,28 +8,31 @@ import { NovoEventoComponent } from './components/eventos/novo-evento/novo-event
 import { EventosComponent } from './components/eventos/eventos.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
+import { PagamentoComponent } from './components/pagamento/pagamento.component';
+import { IngressosComponent } from './components/user/ingressos/ingressos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  // {
-  //   path: '',
-  //   runGuardsAndResolvers: 'always',
-  //   canActivate: [AuthGuard],
-  //   children: [
-  //     { path: 'user', redirectTo: 'user/perfil'},
-  //     {
-  //       path: 'user/perfil', component: PerfilComponent
-  //     },
-  //     {
-  //       path: 'eventos', component: EventosComponent,
-  //       children: [
-  //         { path: 'detalhe/:id', component: NovoEventoComponent },
-  //         { path: 'detalhe', component: NovoEventoComponent },
-  //         { path: 'lista', component: EventoListaComponent },
-  //       ],
-  //     },
-  //   ]
-  // },
+  {
+     path: '',
+     runGuardsAndResolvers: 'always',
+     canActivate: [AuthGuard],
+     children: [
+       { path: 'user', redirectTo: 'user/perfil'},
+       {
+         path: 'user/perfil', component: PerfilComponent
+       },
+       {
+         path: 'eventos', component: EventosComponent,
+         children: [
+          { path: 'pagamento', component: PagamentoComponent},
+          { path: 'ingressos', component: IngressosComponent},
+          { path: 'detalhe/:id', component: NovoEventoComponent },
+          { path: 'detalhe', component: NovoEventoComponent },
+         ],
+       },
+     ]
+  },
   {
     path: 'eventos', component: EventosComponent,
     children: [

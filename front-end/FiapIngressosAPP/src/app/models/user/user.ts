@@ -1,6 +1,7 @@
-export class User {
-  "email": string;
-  "senha": string;
-  "nome": string;
-  "cpf": string;
+export interface User {
+  id: string
+  nome: string
+  email: string
+  accessToken: string
+  isAdmin: boolean
 }

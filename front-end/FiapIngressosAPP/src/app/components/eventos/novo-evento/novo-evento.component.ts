@@ -1,9 +1,12 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CadastraEvento } from '../../../models/evento/CadastraEvento';
 import { ActivatedRoute } from '@angular/router';
 import { ListarEventos } from '../../../models/evento/ListarEventos';
+import { format } from 'date-fns';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-novo-evento',
@@ -13,13 +16,14 @@ import { ListarEventos } from '../../../models/evento/ListarEventos';
 export class NovoEventoComponent {
 
   form!: FormGroup;
-  novoEvento = {} as CadastraEvento;
+  novoEvento = {} as any;
   stateSave = 'post';
 
-  constructor(private eventoService: EventoService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private eventoService: EventoService, private router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute, private toaster:ToastrService) { }
 
   ngOnInit(): void {
-    this. validation();
+    this.validation();
+    this.loadEvento()
   }
 
   private validation(): void {
@@ -41,34 +45,46 @@ export class NovoEventoComponent {
     });
   }
 
-  criarEvento() {
-    this.novoEvento = this.form.value; // Movido para dentro da função
-    this.eventoService.post(this.novoEvento).subscribe((data: any) => {
-      console.log('Evento criado com sucesso:', data);
-      this.resetForm();
-    }, error => {
-      console.error('Erro ao criar evento:', error);
-    });
+  salvarEvento() {
+    if (this.form.valid) {
+      if (this.stateSave === 'post'){
+        this.novoEvento = this.form.value; // Movido para dentro da função
+        this.eventoService.post(this.novoEvento).subscribe((data: any) => {
+          if (data.status === 201) {
+          this.toaster.success('Evento criado com sucesso:', 'Sucesso');
+          this.router.navigate(['eventos/lista']);
+          this.resetForm();
+        } else {
+          this.toaster.error('Erro ao criar evento!', 'Erro');
+        }});
+      } else {
+        this.novoEvento = {id: this.novoEvento.id, ...this.form.value};
+        this.eventoService.put(this.novoEvento).subscribe((data: any) => {
+          if (data.status === 201) {
+            this.toaster.success('Evento atualizado com sucesso:', 'Sucesso');
+            this.router.navigate(['eventos/lista']);
+            this.resetForm();
+          } else {
+          this.toaster.error('Erro ao atualizar evento!', 'Erro');
+          }
+        });
+    }
+  }}
+
+  loadEvento(): void {
+      const eventoIdParam = this.route.snapshot.paramMap.get('id');
+
+      if (eventoIdParam !== null) {
+      this.stateSave = 'put';
+          this.eventoService.getById(eventoIdParam).subscribe((data: ListarEventos) => {
+            this.novoEvento = {...data.data};
+            this.novoEvento.dataInicio = format(new Date(this.novoEvento.dataInicio), 'yyyy-MM-dd');
+            this.novoEvento.dataFim = format(new Date(this.novoEvento.dataFim), 'yyyy-MM-dd');
+            this.novoEvento.dataEvento = format(new Date(this.novoEvento.dataEvento), 'yyyy-MM-dd');
+            this.form.patchValue(this.novoEvento);
+          });
+      }
   }
-
-  // loadEvento(): void {
-  //   const eventoIdParam = this.route.snapshot.paramMap.get('id');
-
-  //   if (eventoIdParam !== null) {
-  //   this.stateSave = 'put';
-
-  //        this.eventoService.getPersonById(eventoIdParam).subscribe(
-  //          (evento: ListarEventos) => {
-  //            this.evento = { ...evento };
-  //            this.evento.nome = this.evento.nome;
-  //            this.evento.dataInicio = this.evento.dataInicio;
-  //            this.form.patchValue(this.evento);
-  //          },
-  //         (error) => console.log(error)
-  //       );
-  //      }
-  //   }
-  // }
 
   resetForm() {
     this.form.reset(); // Resetar o formulário usando o método reset do FormGroup

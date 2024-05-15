@@ -11,8 +11,6 @@ import { AccountService } from '../../services/account.service';
 export class NavComponent implements OnInit {
   isCollapsed = true;
 
-  user$ = this.accountService.retornarUser();
-
   constructor(public accountService: AccountService,private router: Router) { }
 
   ngOnInit(): void {

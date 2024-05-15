@@ -4,6 +4,7 @@ using Fiap.Ingresso.Evento.API.Infra;
 using Fiap.Ingresso.Evento.API.Services;
 using Fiap.Ingresso.Evento.API.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace Fiap.Ingresso.Evento.API.Configuration;
 
@@ -19,7 +20,7 @@ public static class ApiConfig
         services.AddScoped<IEventoService, EventoService>();
 
         services.AddControllers();
-
+        services.AddSwagger();
         services.AddCors(options =>
         {
             options.AddPolicy("Total",
@@ -43,7 +44,8 @@ public static class ApiConfig
         app.UseRouting();
 
         app.UseCors("Total");
-
+        app.UseAuthentication();
+        app.UseAuthorization();
         app.MapControllers();
         app.MigrateDatabase();
     }
@@ -61,4 +63,33 @@ public static class ApiConfig
         }
     }
 
+    private static void AddSwagger(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(c =>
+        {
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Description = "JWT Authorization",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                BearerFormat = "JWT"
+            });
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+        });
+    }
 }
