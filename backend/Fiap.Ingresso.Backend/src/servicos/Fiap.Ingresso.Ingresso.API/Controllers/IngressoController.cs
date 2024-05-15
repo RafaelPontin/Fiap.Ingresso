@@ -24,6 +24,7 @@ public class IngressoController : BaseController
             return BadRequest("Informações inválidas");
         }
 
+        dto.UsuarioId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "sub").Value);
         var response = await _services.ComprarIngresso(ingressoId, dto.UsuarioId, dto.Quantidade, dto.PagamentoId);
         return Ok(response);
     }

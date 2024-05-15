@@ -31,7 +31,7 @@
         <td>{{ evento.descricao }}</td>
         <td>{{ evento.siteEvento }}</td>
         <td>{{ evento.valor }}</td>
-        <td><button type="button" class="btn btn-outline-danger btn-sm me-1 d-none d-md-table-cell" mat-raised-button matTooltip="Comprar"><i class="bi bi-cart-plus"></i></button></td>
+        <td><button type="button" class="btn btn-outline-danger btn-sm me-1 d-none d-md-table-cell" mat-raised-button matTooltip="Comprar" (click)="pagamento(evento.id)"><i class="bi bi-cart-plus"></i></button></td>
         <td *ngIf="tokenService.retornarUser()?.isAdmin"><button (click)="editarEvento(evento.id)" type="button" class="btn btn-outline-primary btn-sm me-1 d-none d-md-table-cell" mat-raised-button matTooltip="Editar" style="cursor: pointer;"><i class="bi bi-pencil-square"></i></button></td>
       </tr>
     </tbody>

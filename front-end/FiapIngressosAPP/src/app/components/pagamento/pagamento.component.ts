@@ -2,6 +2,10 @@ import { PagamentoService } from './../../services/pagamento.service';
 import { CadastroPagamento } from './../../models/pagamento/CadastroPagamento';
 import { Component, OnInit } from '@angular/core';
 import { CompraIngresso } from '../../models/Ingresso/CompraIngresso';
+import { ActivatedRoute, Route } from '@angular/router';
+import { EventoService } from '../../services/evento.service';
+import { ListarEventos } from '../../models/evento/ListarEventos';
+import { DadosEventos } from '../../models/evento/DadosEventos';
 
 
 @Component({
@@ -21,17 +25,19 @@ export class PagamentoComponent implements OnInit {
     vencimentoCartao: ""
    };
 
+
    vendaIngresso: CompraIngresso = {
     pagamentoId: "",
-    quantidade: 1, //todo: pegar da tela de evento
+    quantidade: 1,
     usuarioId: "aacb5bac-f647-4151-b30b-eec7ea92469b"
    }
 
 
-   //TODO: depois validar como pegar o evento utilizado
-   idEvento: string = "75b76820-8c5b-4237-8b59-69b2c5fa842b";
+
+   idEvento: string | null = "";
    idIngresso: string = "";
    idPagameto: string = "";
+   valorEvento: number = 0;
 
    habilitaCartao: boolean = true;
    eventoValido: boolean = false;
@@ -41,8 +47,10 @@ export class PagamentoComponent implements OnInit {
 
    mensagemVenda: string = "";
 
-   constructor(private service : PagamentoService) {
+   constructor(private service : PagamentoService, private route: ActivatedRoute, private serviceEvento: EventoService ) {
+    this.idEvento = this.route.snapshot.paramMap.get('id') ;
     this.getEventoValido();
+    this.getValor();
   }
 
   ngOnInit(): void {
@@ -100,7 +108,7 @@ export class PagamentoComponent implements OnInit {
    {
       this.desabilitaBotao = true;
       this.pagamento.ingressoId = this.idIngresso;
-      this.pagamento.valorPagamento = 200; //todo validar como pegar
+      this.pagamento.valorPagamento = this.valorEvento;
       this.pagamento.tipoPagamento = Number(this.pagamento.tipoPagamento);
 
       let retorno: any;
@@ -122,13 +130,29 @@ export class PagamentoComponent implements OnInit {
    }
 
    public getEventoValido(){
-     this.service.getEventoValido(this.idEvento).subscribe((data : any) => {
+    console.log(`teste: ${this.idEvento}`);
+    if(this.idEvento != null)
+    {
+      this.service.getEventoValido(this.idEvento).subscribe((data : any) => {
         this.eventoValido = true;
         this.idIngresso = data.data.id
      }, error => {
         this.eventoValido = false;
      });
+    }
    }
 
+   private getValor() {
+    if(this.idEvento != null)
+    {
+      this.serviceEvento.getById(this.idEvento).subscribe((data: ListarEventos) => {
+        const evento = data.data as DadosEventos;
+        console.log(evento);
+        this.valorEvento = evento.valor;
+        console.log(this.valorEvento);
+      }
+      , error =>{});
+    }
+   }
 
 }
