@@ -7,7 +7,7 @@ public class Usuario
     public string Email { get; private set; }
     public string Cpf { get; private set; }
     public string Senha { get; private set; }   
-    public bool IsAdmin { get; private set; }   
+    public bool IsAdmin { get; set; }   
     
     public List<string> Erros { get; }
 

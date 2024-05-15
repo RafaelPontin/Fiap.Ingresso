@@ -30,7 +30,7 @@ public class EventoDTO
         Numero = evento.Numero;
         Cidade = evento.Cidade;
         Bairro = evento.Bairro;
-        Cep = Cep;
+        Cep = evento.Cep;
         Descricao = evento.Descricao;
         SiteEvento = evento.SiteEvento;
         Valor = evento.Valor;
