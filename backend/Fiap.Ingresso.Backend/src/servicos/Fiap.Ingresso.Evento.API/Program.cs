@@ -1,10 +1,11 @@
 using Fiap.Ingresso.Evento.API.Configuration;
+using Fiap.Ingresso.WebAPI.Core.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
+builder.AddJwtConfiguration();
 builder.Services.AddApiConfiguration(builder.Configuration);
 
 
