@@ -1,11 +1,12 @@
 import { PagamentoService } from './../../services/pagamento.service';
 import { CadastroPagamento } from './../../models/pagamento/CadastroPagamento';
 import { Component, OnInit } from '@angular/core';
-import { CompraIngresso } from '../../models/Ingresso/CompraIngresso';
+import { CompraIngresso } from '../../models/ingresso/CompraIngresso';
 import { ActivatedRoute, Route } from '@angular/router';
 import { EventoService } from '../../services/evento.service';
 import { ListarEventos } from '../../models/evento/ListarEventos';
 import { DadosEventos } from '../../models/evento/DadosEventos';
+import { IngressoService } from '../../services/ingresso.service';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class PagamentoComponent implements OnInit {
 
    mensagemVenda: string = "";
 
-   constructor(private service : PagamentoService, private route: ActivatedRoute, private serviceEvento: EventoService ) {
+   constructor(private servicePagamento : PagamentoService, private serviceIngresso : IngressoService, private route: ActivatedRoute, private serviceEvento: EventoService ) {
     this.idEvento = this.route.snapshot.paramMap.get('id') ;
     this.getEventoValido();
     this.getValor();
@@ -99,7 +100,7 @@ export class PagamentoComponent implements OnInit {
    {
       this.vendaIngresso.pagamentoId = pagamentoId;
 
-      this.service.postCompraIngresso(this.vendaIngresso, this.pagamento.ingressoId)
+      this.serviceIngresso.postCompraIngresso(this.vendaIngresso, this.pagamento.ingressoId)
                 .subscribe((data: any) => { },
                 error=> { })
    }
@@ -112,7 +113,7 @@ export class PagamentoComponent implements OnInit {
       this.pagamento.tipoPagamento = Number(this.pagamento.tipoPagamento);
 
       let retorno: any;
-      retorno = await this.service.postCadastraPagamento(this.pagamento).toPromise();
+      retorno = await this.servicePagamento.postCadastraPagamento(this.pagamento).toPromise();
       if(retorno.status == 201)
       {
         this.idPagameto = retorno.data;
@@ -122,7 +123,7 @@ export class PagamentoComponent implements OnInit {
 
    public async getLinhaDigitavel(){
     let retorno: any;
-    retorno = await this.service.getLinhaDigitavel(this.idPagameto).toPromise();
+    retorno = await this.servicePagamento.getLinhaDigitavel(this.idPagameto).toPromise();
     if(retorno.status == 200){
       this.mensagemVenda = `Boleto gerado com sucesso: linha digitavel: \n ${retorno.data}`;
       this.habilitaMensagemAcordo = true;
@@ -133,7 +134,7 @@ export class PagamentoComponent implements OnInit {
     console.log(`teste: ${this.idEvento}`);
     if(this.idEvento != null)
     {
-      this.service.getEventoValido(this.idEvento).subscribe((data : any) => {
+      this.serviceIngresso.getEventoValido(this.idEvento).subscribe((data : any) => {
         this.eventoValido = true;
         this.idIngresso = data.data.id
      }, error => {

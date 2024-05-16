@@ -1,5 +1,5 @@
-﻿using Fiap.Ingresso.Evento.API.DTOs;
-using Fiap.Ingresso.Evento.API.Infra;
+﻿using Fiap.Ingresso.Evento.API.AtributosAutorizacao;
+using Fiap.Ingresso.Evento.API.DTOs;
 using Fiap.Ingresso.Evento.API.Services.Contracts;
 using Fiap.Ingresso.WebAPI.Core.Controllers;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +19,7 @@ public class EventoController : BaseController
     }
 
     [HttpPost("Criar-Evento")]
-    [AllowAnonymous]
+    [CustomAuthorize("True")]
     public async Task<IActionResult> CadastraEvento(CadastraEventoDto dto)
     {
         if(!ModelState.IsValid)
@@ -33,6 +33,7 @@ public class EventoController : BaseController
 
 
     [HttpPut("Alterar-Evento")]
+    [CustomAuthorize("True")]
     public async Task<IActionResult> AlterarEvento([FromBody] AlterarEventoDTO dto)
     {
         if (!ModelState.IsValid)
@@ -45,6 +46,7 @@ public class EventoController : BaseController
     }
 
     [HttpPut("Finalizar-Evento/{id:guid}")]
+    [CustomAuthorize("True")]
     public async Task<IActionResult> FinalizarEvento(Guid id)
     {
         if (!ModelState.IsValid)
@@ -69,6 +71,7 @@ public class EventoController : BaseController
     }
 
     [HttpGet("Listar")]
+    [AllowAnonymous]
     public async Task<IActionResult> ListarEventos()
     {
         var eventos = await _services.ListarEvento();

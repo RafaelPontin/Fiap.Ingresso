@@ -11,23 +11,23 @@ import { DadosEventos } from '../models/evento/DadosEventos';
 export class EventoService {
 
 
-  baseURL = 'https://localhost:7128/';
+  baseUrlEvento = 'https://localhost:7128/';
 
   constructor(private http: HttpClient) { }
 
   public get() : Observable<ListarEventos>{
-    return this.http.get<ListarEventos>(`${this.baseURL}Listar`)
+    return this.http.get<ListarEventos>(`${this.baseUrlEvento}Listar`)
   }
 
   public post(cadastraEvento: CadastraEvento) {
-    return this.http.post(`${this.baseURL}Criar-Evento`, cadastraEvento)
+    return this.http.post(`${this.baseUrlEvento}Criar-Evento`, cadastraEvento)
   }
 
   public getById(id: string) : Observable<ListarEventos>{
-    return this.http.get<ListarEventos>(`${this.baseURL}Evento/${id}`)
+    return this.http.get<ListarEventos>(`${this.baseUrlEvento}Evento/${id}`)
   }
 
   public put(evento: DadosEventos) {
-    return this.http.put(`${this.baseURL}Alterar-Evento`, evento)
+    return this.http.put(`${this.baseUrlEvento}Alterar-Evento`, evento)
   }
 }

@@ -10,7 +10,6 @@ import { EventoListaComponent } from './components/eventos/evento-lista/evento-l
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -28,10 +27,9 @@ import { IngressosComponent } from './components/user/ingressos/ingressos.compon
     EventoListaComponent,
     NovoEventoComponent,
     RegistrationComponent,
-    PerfilComponent,
     NovoEventoComponent,
     PagamentoComponent,
-    IngressosComponent
+    IngressosComponent,
   ],
   imports: [
     BrowserModule,

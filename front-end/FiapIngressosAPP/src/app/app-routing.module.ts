@@ -7,7 +7,6 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import { NovoEventoComponent } from './components/eventos/novo-evento/novo-evento.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { AuthGuard } from './guard/auth.guard';
-import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
 import { IngressosComponent } from './components/user/ingressos/ingressos.component';
 
@@ -19,16 +18,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'pagamento/:id', component: PagamentoComponent },
-      { path: 'user', redirectTo: 'user/perfil' },
-      {
-        path: 'user/perfil',
-        component: PerfilComponent,
+      { path: 'user', component: UserComponent,
+        children: [
+          { path: 'meus-ingressos', component: IngressosComponent },
+        ],
       },
       {
-        path: 'eventos',
-        component: EventosComponent,
+        path: 'eventos', component: EventosComponent,
         children: [
-          { path: 'ingressos', component: IngressosComponent },
           { path: 'detalhe/:id', component: NovoEventoComponent },
           { path: 'detalhe', component: NovoEventoComponent },
         ],
@@ -36,8 +33,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'eventos',
-    component: EventosComponent,
+    path: 'eventos', component: EventosComponent,
     children: [
       { path: 'editar/:id', component: NovoEventoComponent },
       { path: 'novo', component: NovoEventoComponent },
@@ -45,14 +41,13 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'user',
-    component: UserComponent,
+    path: 'user', component: UserComponent,
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
     ],
   },
-  //{ path: 'home', component: EventoListaComponent },
+  { path: 'home', component: EventoListaComponent },
   { path: '**', redirectTo: 'eventos/lista', pathMatch: 'full' },
 ];
 

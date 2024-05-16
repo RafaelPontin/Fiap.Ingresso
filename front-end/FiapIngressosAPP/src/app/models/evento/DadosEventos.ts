@@ -14,5 +14,5 @@ export interface DadosEventos {
   descricao : string
   siteEvento : string
   valor : number
-
+  disponivel? : boolean
 }

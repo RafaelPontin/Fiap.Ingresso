@@ -35,6 +35,13 @@
         <td *ngIf="tokenService.retornarUser()?.isAdmin"><button (click)="editarEvento(evento.id)" type="button" class="btn btn-outline-primary btn-sm me-1 d-none d-md-table-cell" mat-raised-button matTooltip="Editar" style="cursor: pointer;"><i class="bi bi-pencil-square"></i></button></td>
       </tr>
     </tbody>
+    <tfoot *ngIf="!eventoList.length">
+      <tr>
+        <td colspan="11" class="text-center">
+          <h4>Nenhum evento encontrado!</h4>
+        </td>
+      </tr>
+    </tfoot>
   </table>
 
 </div>

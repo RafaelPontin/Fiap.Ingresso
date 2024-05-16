@@ -3,30 +3,20 @@
     <thead class="thead-dark">
       <tr>
         <th>#</th>
-        <th>Nome</th>
+        <th>Codigo do Ingresso</th>
+        <th>Evento</th>
         <th>Data do Evento</th>
-        <th>Publico Máximo</th>
-        <th>Endereço</th>
-        <th>CEP</th>
-        <th>Descrição</th>
-        <th>Site do Evento</th>
-        <th>Valor</th>
-        <th><i class="bi bi-bag"></i></th>
+        <th>Data da Venda</th>
       </tr>
     </thead>
     <tbody>
-      <!-- <tr *ngFor="let ingresso of ingressoList; let i = index" >
+      <tr *ngFor="let ingresso of ingressoList; let i = index" >
         <td>{{ i + 1 }}</td>
-        <td>{{ evento.nome }}</td>
-        <td>{{ evento.dataEvento | date:'dd/MM/yyyy' }}</td>
-        <td>{{ evento.publicoMaximo }}</td>
-        <td>{{ evento.logradouro }},{{ evento.numero }}. {{ evento.bairro }} - {{ evento.cidade }}</td>
-        <td>{{ evento.cep }}</td>
-        <td>{{ evento.descricao }}</td>
-        <td>{{ evento.siteEvento }}</td>
-        <td>{{ evento.valor }}</td>
-        <td><button type="button" class="btn btn-outline-danger btn-sm me-1 d-none d-md-table-cell" mat-raised-button matTooltip="Comprar"><i class="bi bi-cart-plus"></i></button></td>
-      </tr> -->
+        <td>{{ ingresso.id }}</td>
+        <td>{{ ingresso.nomeEvento }}</td>
+        <td>{{ ingresso.dataEvento | date:'dd/MM/yyyy' }}</td>
+        <td>{{ ingresso.dataVenda | date:'dd/MM/yyyy' }}</td>
+      </tr>
     </tbody>
   </table>
 
