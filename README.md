@@ -43,3 +43,20 @@ Finalizando o migration, sera criado esses bancos:
 
 ![image](https://github.com/RafaelPontin/Fiap.Ingresso/assets/16031920/628cd705-1abd-4333-80a9-ff9bee132066)
 resultado esperado.
+
+
+## Front End 
+
+* Para o funcionamento e necessario ter um ambiente configurado com o node e angular
+* Abra o visual studio code (ou outra ide que suporte javascript)
+* Abra o diretorio: **..\front-end\FiapIngressosAPP**
+* Execute o comando na raiz do projeto: npm install (necessario para instalar todas as dependecias do projeto) 
+  ![image](https://github.com/RafaelPontin/Fiap.Ingresso/assets/16031920/0e8911e7-0e53-4d84-8137-64da14f91570)
+* Execute o comando: ng serve (para executar a aplicação)
+![image](https://github.com/RafaelPontin/Fiap.Ingresso/assets/16031920/6b910232-9b98-42ae-a4d2-99c8874304ff)
+* abra no navegador de sua preferencia o endereço: http://localhost:4200/
+
+
+
+## Criterios de aceite
+* https://github.com/RafaelPontin/Fiap.Ingresso/wiki/Levantamento-de-Requisitos-e-Crit%C3%A9rios-de-Aceite
