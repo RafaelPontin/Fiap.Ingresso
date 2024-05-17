@@ -15,7 +15,7 @@ public class EventoService : IEventoService
         _repository = repository;        
     }
 
-    public async Task<ResponseResult<bool>> CadastraEvento(CadastraEventoDto dto)
+    public async Task<ResponseResult<Guid>> CadastraEvento(CadastraEventoDto dto)
     {
         try
         {
@@ -40,22 +40,22 @@ public class EventoService : IEventoService
 
             if (evento.Erros.Any())
             {
-                return new ResponseResult<bool>()
+                return new ResponseResult<Guid>()
                 {
                     Erros = evento.Erros,
-                    Data = false,
+                    Data = Guid.Empty,
                     Status = 400
                 };
             }
 
            await _repository.CadastraEvento(evento);
            
-           return new ResponseResult<bool>() { Data = true,  Status = 201 };
+           return new ResponseResult<Guid>() { Data = evento.Id.Value,  Status = 201 };
            
         }
         catch(Exception ex)
         {
-            return new ResponseResult<bool>() { Data = false, Status = 500 };
+            return new ResponseResult<Guid>() { Data = Guid.Empty, Status = 500 };
         }
     }
 

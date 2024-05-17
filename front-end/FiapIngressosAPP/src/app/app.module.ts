@@ -10,13 +10,14 @@ import { EventoListaComponent } from './components/eventos/evento-lista/evento-l
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NovoEventoComponent } from './components/eventos/novo-evento/novo-evento.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IngressosComponent } from './components/user/ingressos/ingressos.component';
+import { IngressosDisponiveisComponent } from './components/ingressos/ingressos-disponiveis/ingressos-disponiveis.component';
+import { MeusIngressosComponent } from './components/user/meus-ingressos/meus-ingressos.component';
+import { IngressosComponent } from './components/ingressos/ingressos.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,10 @@ import { IngressosComponent } from './components/user/ingressos/ingressos.compon
     EventoListaComponent,
     NovoEventoComponent,
     RegistrationComponent,
-    PerfilComponent,
     NovoEventoComponent,
     PagamentoComponent,
+    IngressosDisponiveisComponent,
+    MeusIngressosComponent,
     IngressosComponent
   ],
   imports: [

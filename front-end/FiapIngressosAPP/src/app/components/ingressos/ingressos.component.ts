@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 export class IngressosComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

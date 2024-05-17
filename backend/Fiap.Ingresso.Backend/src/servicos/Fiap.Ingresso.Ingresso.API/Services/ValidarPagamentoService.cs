@@ -1,5 +1,6 @@
 ﻿using Fiap.Ingresso.Ingresso.API.DTOs;
 using Fiap.Ingresso.Ingresso.API.Services.Contratos;
+using Fiap.Ingresso.WebAPI.Core.Communication;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -16,9 +17,10 @@ public class ValidarPagamentoService : IValidarPagamentoService
 
     public async Task<bool> ValidarPagamento(Guid pagamento)
     {
-        var content = new StringContent(JsonConvert.SerializeObject(pagamento), Encoding.UTF8, "application/json");
-        var response = await _httpClient.PostAsync("api/pagamento/validar", content);
-
-        return response.IsSuccessStatusCode;
+        var baseUrl = "https://localhost:7154/";
+        var response = await _httpClient.GetAsync(baseUrl+"Pagamento-por-Id?id="+pagamento);
+        string result = await response.Content.ReadAsStringAsync();
+        var responseResult = JsonConvert.DeserializeObject<ResponseResult<int>>(result);
+        return responseResult.Status == 200;
     }
 }

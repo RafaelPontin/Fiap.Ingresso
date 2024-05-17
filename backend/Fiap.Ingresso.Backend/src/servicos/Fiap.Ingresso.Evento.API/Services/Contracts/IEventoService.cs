@@ -5,7 +5,7 @@ namespace Fiap.Ingresso.Evento.API.Services.Contracts;
 
 public interface IEventoService
 {
-    Task<ResponseResult<bool>> CadastraEvento(CadastraEventoDto dto);
+    Task<ResponseResult<Guid>> CadastraEvento(CadastraEventoDto dto);
     Task<ResponseResult<bool>> AlterarEvento(AlterarEventoDTO dto);
     Task<ResponseResult<IList<EventoDTO>>> ListarEvento();
     Task<ResponseResult<Guid>> CancelaEvento(Guid id);

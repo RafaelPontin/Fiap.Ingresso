@@ -30,7 +30,6 @@ export class AccountService {
   public login(model: LoginUser) {
       return this.http.post<RetornoUser>(this.baseURL+'Login', model).pipe(tap((response) => {
       const user = response.data || '';
-      console.log(user);
       if(user.accessToken !== null) {
         this.tokenService.salvarToken(user as User);
         this.userSubject.next(user as User);
@@ -46,14 +45,6 @@ export class AccountService {
      const user = this.tokenService.retornarUser();
      this.userSubject.next(user as User);
   }
-
-  // buscarCadastro(): Observable<User> {
-  //   return this.http.get<User>(`${this.baseURL}/Buscar-Usuario`);
-  // }
-
-  // editarCadastro(pessoaUsuaria: User): Observable<User> {
-  //   return this.http.patch<User>(`${this.baseURL}/Alterar-Usuario`, pessoaUsuaria);
-  // }
 
   logout() {
     this.tokenService.excluirToken();

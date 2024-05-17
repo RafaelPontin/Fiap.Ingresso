@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fiap.Ingresso.Ingresso.API.Controllers;
 
-[Authorize]
 public class IngressosDoEventoController : BaseController
 {
     private readonly IIngressosDoEventoService _services;
@@ -17,6 +16,7 @@ public class IngressosDoEventoController : BaseController
     }
 
     [HttpPost("Cadastrar")]
+    [Authorize]
     public async Task<IActionResult> CadastraIngressosDoEvento(CadastrarIngressosDoEventoDto dto)
     {
         if (!ModelState.IsValid)

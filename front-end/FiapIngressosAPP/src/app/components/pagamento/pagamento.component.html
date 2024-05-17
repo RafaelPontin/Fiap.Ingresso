@@ -1,6 +1,21 @@
 <div class="container">
   <div class="card rounded shadow-sm mt-4 pb-4">
     <div class="form-group">
+      <label class="form-label">Quantidade</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="quantidadeInput" value="{{vendaIngresso.quantidade}}">
+        <button class="btn btn-outline-secondary" type="button" (click)="aumentarQuantidade()">+</button>
+        <button class="btn btn-outline-secondary" type="button" (click)="diminuirQuantidade()">-</button>
+      </div>
+      <div>
+        <br>
+        <p class="form-label">Total</p>
+        <p>R$ {{valorTotal}}</p>
+      </div>
+    </div>
+
+
+    <div class="form-group">
       <label class="form-label">Forma de pagamento</label>
       <select [(ngModel)]="pagamento.tipoPagamento" class="form-control" (change)="selectionMetodoPagament($event)">
         <option Value="1" selected>Boleto</option>

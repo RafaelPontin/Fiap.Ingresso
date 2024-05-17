@@ -45,6 +45,10 @@ public class IngressosDoEvento
             Disponiveis--;
             var venda = new Ingresso(usuarioId, this.EventoId);
             IngressosVendidos.Add(venda);
+            if (Disponiveis == 0)
+            {
+                Ativo = false;
+            }
         }
 
         return IngressosVendidos;
@@ -61,10 +65,14 @@ public class IngressosDoEvento
             Ativo = false;
             Erros.Add("Ingresso expirado");
         }
-        if (Disponiveis <= quantidade)
+        if (Disponiveis < quantidade)
         {   
             Ativo = false;
             Erros.Add("Ingressos Esgotados ou Indisponível");
+        }
+        if (!Ativo)
+        {
+            Erros.Add("Compra de ingresso não está mais disponível");
         }
     }
 

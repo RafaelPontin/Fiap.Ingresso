@@ -52,6 +52,9 @@ export class RegistrationComponent implements OnInit {
         if(data.status == 200){
           this.toaster.success('Cadastro realizado com sucesso');
           this.router.navigateByUrl('/');
+        }
+        if(data.erros== "Email ja cadastrado"){
+          this.toaster.error('E-mail já cadastrado', 'Erro');
         } else {
           this.toaster.error('Erro ao cadastrar', 'Erro');
         }}

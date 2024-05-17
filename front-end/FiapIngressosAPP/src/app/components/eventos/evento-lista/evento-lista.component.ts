@@ -1,6 +1,5 @@
+import { IngressoService } from './../../../services/ingresso.service';
 import { TokenService } from './../../../services/token.service';
-import { User } from './../../../models/user/user';
-import { AccountService } from './../../../services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
@@ -16,7 +15,7 @@ export class EventoListaComponent {
 
   eventoList: any[] = [];
 
-  constructor(private eventoService: EventoService, private router : Router, private route: ActivatedRoute, public tokenService : TokenService)
+  constructor(private eventoService: EventoService, private ingressoService: IngressoService, private router : Router, private route: ActivatedRoute, public tokenService : TokenService)
   {
   }
 
@@ -37,10 +36,4 @@ export class EventoListaComponent {
   public novoEvento(): void {
     this.router.navigate(['eventos/novo']);
   }
-
-  public pagamento(id: string) : void
-  {
-    this.router.navigate([`pagamento/${id}`]);
-  }
-
 }
