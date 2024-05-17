@@ -1,12 +1,8 @@
-﻿using Xunit;
-using Moq;
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using Bogus;
+using Fiap.Ingresso.Evento.API.DTOs;
 using Fiap.Ingresso.Evento.API.Infra;
 using Fiap.Ingresso.Evento.API.Services;
-using Fiap.Ingresso.Evento.API.DTOs;
-using Bogus;
+using Moq;
 using AppDomain = Fiap.Ingresso.Evento.API.Domain;
 
 namespace Fiap.Ingresso.Evento.Teste.Services;
@@ -47,7 +43,7 @@ public class EventoServiceTest
 
         var result = await _eventoService.CadastraEvento(dto);
 
-        //Assert.Equal((result.Data as Guid)., typeof(Guid));
+        Assert.NotEqual(result.Data, Guid.Empty);
         Assert.Equal(201, result.Status);
     }
 
