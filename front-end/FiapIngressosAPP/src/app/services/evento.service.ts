@@ -19,8 +19,8 @@ export class EventoService {
     return this.http.get<ListarEventos>(`${this.baseUrlEvento}Listar`)
   }
 
-  public post(cadastraEvento: CadastraEvento) {
-    return this.http.post(`${this.baseUrlEvento}Criar-Evento`, cadastraEvento)
+  public post(cadastraEvento: CadastraEvento) : Observable<ListarEventos> {
+    return this.http.post<ListarEventos>(`${this.baseUrlEvento}Criar-Evento`, cadastraEvento)
   }
 
   public getById(id: string) : Observable<ListarEventos>{

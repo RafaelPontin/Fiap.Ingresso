@@ -60,6 +60,7 @@ public class EventoController : BaseController
     }
 
     [HttpGet("Evento/{id:guid}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetById(Guid id)
     {
         if (!ModelState.IsValid)

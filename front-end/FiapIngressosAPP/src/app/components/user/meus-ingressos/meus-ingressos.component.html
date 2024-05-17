@@ -12,12 +12,19 @@
     <tbody>
       <tr *ngFor="let ingresso of ingressoList; let i = index" >
         <td>{{ i + 1 }}</td>
-        <td>{{ ingresso.id }}</td>
-        <td>{{ ingresso.nomeEvento }}</td>
-        <td>{{ ingresso.dataEvento | date:'dd/MM/yyyy' }}</td>
-        <td>{{ ingresso.dataVenda | date:'dd/MM/yyyy' }}</td>
+        <td>{{ ingresso?.id }}</td>
+        <td>{{ ingresso?.evento?.nome }}</td>
+        <td>{{ ingresso?.evento?.dataEvento | date:'dd/MM/yyyy' }}</td>
+        <td>{{ ingresso?.dataVenda| date:'dd/MM/yyyy' }}</td>
       </tr>
     </tbody>
+    <tfoot *ngIf="!ingressoList?.length">
+      <tr>
+        <td colspan="11" class="text-center">
+          <h4>Nenhum ingresso encontrado!</h4>
+        </td>
+      </tr>
+    </tfoot>
   </table>
 
 </div>

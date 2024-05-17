@@ -3,7 +3,8 @@
     <a class="navbar-brand text-primary" href="home">Fiap Ingressos</a>
     <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active " aria-current="page" href="home">Eventos</a>
+        <a class="nav-link active" aria-current="page" href="ingressos/disponiveis">Ingressos</a>
+        <a class="nav-link active " aria-current="page" href="">Eventos</a>
       </div>
       <div class="navbar-nav">
         <a *ngIf="accountService.user$ | async as User" class="nav-link active" aria-current="page" routerLink="/user/meus-ingressos">Meus Ingressos</a>

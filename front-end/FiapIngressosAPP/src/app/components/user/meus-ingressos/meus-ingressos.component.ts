@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { IngressoService } from '../../../services/ingresso.service';
-import { EventoService } from '../../../services/evento.service';
-import { TokenService } from '../../../services/token.service';
-import { DadosIngresso } from '../../../models/ingresso/DadosIngresso';
-import { ListarIngressos } from '../../../models/ingresso/ListarIngressos';
 import { DadosEventos } from '../../../models/evento/DadosEventos';
 import { ListarEventos } from '../../../models/evento/ListarEventos';
+import { DadosIngresso } from '../../../models/ingresso/DadosIngresso';
+import { ListarIngressos } from '../../../models/ingresso/ListarIngressos';
+import { EventoService } from '../../../services/evento.service';
+import { IngressoService } from '../../../services/ingresso.service';
+import { TokenService } from '../../../services/token.service';
 
 @Component({
-  selector: 'app-ingressos',
-  templateUrl: './ingressos.component.html',
-  styleUrl: './ingressos.component.scss'
+  selector: 'app-meus-ingressos',
+  templateUrl: './meus-ingressos.component.html',
+  styleUrl: './meus-ingressos.component.scss'
 })
-export class IngressosComponent {
+export class MeusIngressosComponent {
   ingressoList: DadosIngresso[] = [];
 
   constructor(
@@ -33,11 +33,10 @@ export class IngressosComponent {
   }
 
   public getDadosEventoIngresso(ingressos: DadosIngresso[]) {
-      ingressos.map((ingresso) => {
+      ingressos?.map((ingresso) => {
         this.eventoService.getById(ingresso.eventoId).subscribe((data: ListarEventos) => {
           var evento = data.data as DadosEventos;
-          ingresso.nomeEvento = evento.nome;
-          ingresso.dataEvento = evento.dataEvento;
+          ingresso.evento = evento;
         })})
   };
 }

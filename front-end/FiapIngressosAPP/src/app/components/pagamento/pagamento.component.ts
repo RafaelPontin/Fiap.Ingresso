@@ -3,10 +3,9 @@ import { CadastroPagamento } from './../../models/pagamento/CadastroPagamento';
 import { Component, OnInit } from '@angular/core';
 import { CompraIngresso } from '../../models/ingresso/CompraIngresso';
 import { ActivatedRoute, Route } from '@angular/router';
-import { EventoService } from '../../services/evento.service';
-import { ListarEventos } from '../../models/evento/ListarEventos';
-import { DadosEventos } from '../../models/evento/DadosEventos';
 import { IngressoService } from '../../services/ingresso.service';
+import { ListarIngressos } from '../../models/ingresso/ListarIngressos';
+import { Ingressos } from '../../models/ingresso/Ingressos';
 
 
 @Component({
@@ -47,11 +46,12 @@ export class PagamentoComponent implements OnInit {
    habilitaMensagemAcordo: boolean = false;
 
    mensagemVenda: string = "";
+   valorTotal: number = 0;
+   quantidadeDisponivel: number = 0;
 
-   constructor(private servicePagamento : PagamentoService, private serviceIngresso : IngressoService, private route: ActivatedRoute, private serviceEvento: EventoService ) {
+   constructor(private servicePagamento : PagamentoService, private serviceIngresso : IngressoService, private route: ActivatedRoute) {
     this.idEvento = this.route.snapshot.paramMap.get('id') ;
     this.getEventoValido();
-    this.getValor();
   }
 
   ngOnInit(): void {
@@ -73,6 +73,21 @@ export class PagamentoComponent implements OnInit {
 
    public async fazerPagamento(event: any)
    {
+      this.getEventoValido();
+      if(this.quantidadeDisponivel == 0)
+      {
+        this.mensagemVenda = "Ingressos esgotados!";
+        this.habilitaMensagemAcordo = true;
+        this.desabilitaBotao = true;
+        return;
+      }
+      if(this.vendaIngresso.quantidade > this.quantidadeDisponivel)
+      {
+        this.mensagemVenda = "Quantidade de ingressos maior que a disponivel!";
+        this.habilitaMensagemAcordo = true;
+        this.desabilitaBotao = true;
+        return;
+      }
 
       if(this.eventoValido)
       {
@@ -109,7 +124,7 @@ export class PagamentoComponent implements OnInit {
    {
       this.desabilitaBotao = true;
       this.pagamento.ingressoId = this.idIngresso;
-      this.pagamento.valorPagamento = this.valorEvento;
+      this.pagamento.valorPagamento = this.valorTotal;
       this.pagamento.tipoPagamento = Number(this.pagamento.tipoPagamento);
 
       let retorno: any;
@@ -131,29 +146,35 @@ export class PagamentoComponent implements OnInit {
    }
 
    public getEventoValido(){
-    console.log(`teste: ${this.idEvento}`);
     if(this.idEvento != null)
     {
-      this.serviceIngresso.getEventoValido(this.idEvento).subscribe((data : any) => {
+      this.serviceIngresso.getEventoValido(this.idEvento).subscribe((data : ListarIngressos) => {
         this.eventoValido = true;
-        this.idIngresso = data.data.id
+        const ingressoback = data.data as Ingressos;
+        this.idIngresso = ingressoback.id;
+        this.valorEvento = ingressoback.preco;
+        this.valorTotal = this.valorEvento;
+        this.quantidadeDisponivel = ingressoback.disponiveis;
      }, error => {
         this.eventoValido = false;
      });
     }
    }
 
-   private getValor() {
-    if(this.idEvento != null)
-    {
-      this.serviceEvento.getById(this.idEvento).subscribe((data: ListarEventos) => {
-        const evento = data.data as DadosEventos;
-        console.log(evento);
-        this.valorEvento = evento.valor;
-        console.log(this.valorEvento);
-      }
-      , error =>{});
-    }
-   }
+   private calcularValorTotal() {
+    this.valorTotal = this.valorEvento * this.vendaIngresso.quantidade;
+  }
 
+   public aumentarQuantidade() {
+    this.vendaIngresso.quantidade++;
+    this.calcularValorTotal();
+    }
+
+  public diminuirQuantidade() {
+    if(this.vendaIngresso.quantidade > 1)
+    {
+      this.vendaIngresso.quantidade--;
+      this.calcularValorTotal();
+    }
+  }
 }

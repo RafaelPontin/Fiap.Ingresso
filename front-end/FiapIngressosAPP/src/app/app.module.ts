@@ -15,7 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NovoEventoComponent } from './components/eventos/novo-evento/novo-evento.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IngressosComponent } from './components/user/ingressos/ingressos.component';
+import { IngressosDisponiveisComponent } from './components/ingressos/ingressos-disponiveis/ingressos-disponiveis.component';
+import { MeusIngressosComponent } from './components/user/meus-ingressos/meus-ingressos.component';
+import { IngressosComponent } from './components/ingressos/ingressos.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { IngressosComponent } from './components/user/ingressos/ingressos.compon
     RegistrationComponent,
     NovoEventoComponent,
     PagamentoComponent,
-    IngressosComponent,
+    IngressosDisponiveisComponent,
+    MeusIngressosComponent,
+    IngressosComponent
   ],
   imports: [
     BrowserModule,

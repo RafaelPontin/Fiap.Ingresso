@@ -8,7 +8,9 @@ import { NovoEventoComponent } from './components/eventos/novo-evento/novo-event
 import { EventosComponent } from './components/eventos/eventos.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
-import { IngressosComponent } from './components/user/ingressos/ingressos.component';
+import { IngressosDisponiveisComponent } from './components/ingressos/ingressos-disponiveis/ingressos-disponiveis.component';
+import { MeusIngressosComponent } from './components/user/meus-ingressos/meus-ingressos.component';
+import { IngressosComponent } from './components/ingressos/ingressos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,7 +22,7 @@ const routes: Routes = [
       { path: 'pagamento/:id', component: PagamentoComponent },
       { path: 'user', component: UserComponent,
         children: [
-          { path: 'meus-ingressos', component: IngressosComponent },
+          { path: 'meus-ingressos', component: MeusIngressosComponent },
         ],
       },
       {
@@ -30,6 +32,12 @@ const routes: Routes = [
           { path: 'detalhe', component: NovoEventoComponent },
         ],
       },
+    ],
+  },
+  {
+    path: 'ingressos', component: IngressosComponent,
+    children: [
+      { path: 'disponiveis', component: IngressosDisponiveisComponent}
     ],
   },
   {
