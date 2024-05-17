@@ -38,6 +38,7 @@ Finalizando o migration, sera criado esses bancos:
 
 * Abra  "Gerenciador de testes" no visual studio
 * Execute todos os testes
+  
    ![image](https://github.com/RafaelPontin/Fiap.Ingresso/assets/16031920/fdd6f992-f4c2-4391-b658-844684b2a3a6)
 * Aguarde todos os teste (pode demorar vai depender da maquina)
 
