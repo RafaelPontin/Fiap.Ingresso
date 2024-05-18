@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Fiap.Ingresso.Pagamento.API\Fiap.Ingresso.Pagamento.API.csproj" />
+    <ProjectReference Include="..\..\servicos\Fiap.Ingresso.Pagamento.API\Fiap.Ingresso.Pagamento.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
