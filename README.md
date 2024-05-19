@@ -6,7 +6,7 @@
 |------|-------|
 |Antonio Andderson de Freitas Soares|andderson.freitas@gmail.com|
 |Elielson do Nascimento Rodrigues|elielsonrj@hotmail.com|
-|RAFAEL FAUSTINO MAGALHAES PONTIN|rfmpontin@gmail.com|
+|Rafael Faustino Magalhães Pontin|rfmpontin@gmail.com|
 |Alexssander Ferreira do Nascimento|alexssanderferreira@hotmail.com|
 
 ## BackEnd: 
