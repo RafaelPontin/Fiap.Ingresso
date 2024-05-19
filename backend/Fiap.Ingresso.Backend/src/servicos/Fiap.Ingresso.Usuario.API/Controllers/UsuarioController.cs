@@ -44,18 +44,5 @@ namespace Fiap.Ingresso.Usuario.API.Controllers
             return Ok(response);
         }
 
-        [HttpPost("Alterar-Usuario")]
-        [Authorize]
-        public async Task<IActionResult> AlterarAsync(AlterarCadastroDto request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Informações inválidas");
-            }
-
-            var response = await _usuarioService.AlterarUsuario(request);
-
-            return Ok(response);
-        }
     }
 }

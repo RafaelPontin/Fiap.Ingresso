@@ -1,5 +1,4 @@
 ﻿using Fiap.Ingresso.Evento.API.Data;
-using Fiap.Ingresso.Evento.API.Data.Seed;
 using Fiap.Ingresso.Evento.API.Infra;
 using Fiap.Ingresso.Evento.API.Services;
 using Fiap.Ingresso.Evento.API.Services.Contracts;
@@ -58,8 +57,6 @@ public static class ApiConfig
                 .GetRequiredService<EventoContext>();
 
             dbContext.Database.Migrate();
-
-            EventoSeed.Seed(dbContext);
         }
     }
 
