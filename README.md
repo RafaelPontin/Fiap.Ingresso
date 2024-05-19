@@ -31,8 +31,8 @@ Finalizando o migration, sera criado esses bancos:
 
 ### Autenticação
  **Na criação do projeto, ja criamos 2 usuarios**
- * User: usuario@email.com / password: 1234567891 (usuario normal)
- * User: adm@adm.com / password: 45678912345 (usuario adminstrador)
+ * User: usuario@email.com / password: 123123 (usuario normal)
+ * User: adm@adm.com / password: 123123 (usuario adminstrador)
 
 ## Testes
 
