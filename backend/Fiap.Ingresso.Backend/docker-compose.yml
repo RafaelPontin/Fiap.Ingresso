@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  ingressodb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+
+  usuariodb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+
+  discountdb:
+    image: postgres
+
+  fiap.ingresso.evento.api:
+    image: ${DOCKER_REGISTRY-}fiapingressoeventoapi
+    build:
+      context: .
+      dockerfile: src/servicos/Fiap.Ingresso.Evento.API/Dockerfile
+
+  fiap.ingresso.usuario.api:
+    image: ${DOCKER_REGISTRY-}fiapingressousuarioapi
+    build:
+      context: .
+      dockerfile: src/servicos/Fiap.Ingresso.Usuario.API/Dockerfile
+
+volumes:
+  ingressodb:  
+  usuariodb:

@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Pagamento.API
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.Ingresso.Ingresso.API", "src\servicos\Fiap.Ingresso.Ingresso.API\Fiap.Ingresso.Ingresso.API.csproj", "{871E08AE-A6E1-4E83-A7D7-3060DACCD86A}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{946C1811-E72D-4623-8CA6-15A6DB614C8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{871E08AE-A6E1-4E83-A7D7-3060DACCD86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{871E08AE-A6E1-4E83-A7D7-3060DACCD86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{871E08AE-A6E1-4E83-A7D7-3060DACCD86A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{946C1811-E72D-4623-8CA6-15A6DB614C8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946C1811-E72D-4623-8CA6-15A6DB614C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946C1811-E72D-4623-8CA6-15A6DB614C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946C1811-E72D-4623-8CA6-15A6DB614C8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
