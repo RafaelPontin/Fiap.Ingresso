@@ -7,6 +7,9 @@ services:
   usuariodb:
     image: mcr.microsoft.com/mssql/server:2019-latest
 
+  pagamentodb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+
   fiap.ingresso.evento.api:
     image: ${DOCKER_REGISTRY-}fiapingressoeventoapi
     build:
@@ -16,8 +19,16 @@ services:
   fiap.ingresso.usuario.api:
     image: ${DOCKER_REGISTRY-}fiapingressousuarioapi
     build:
-      context: .
+      context: . 
       dockerfile: src/servicos/Fiap.Ingresso.Usuario.API/Dockerfile
+
+  fiap.ingresso.pagamento.api:
+    image: ${DOCKER_REGISTRY-}fiapingressopagamentoapi
+    build:
+      context: .
+      dockerfile: Fiap.Ingresso.Pagamento.API/Dockerfile
+
+
 volumes:
   eventodb:
   usuariodb:  
