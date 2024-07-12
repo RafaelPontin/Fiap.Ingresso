@@ -28,6 +28,14 @@ services:
     ports:
         - "1435:1435"        
 
+  ingressodb:
+    container_name: ingressodb
+    restart: always
+    environment:
+        SA_PASSWORD: "Sw##N12345678"
+        ACCEPT_EULA: "Y"
+    ports:
+        - "1436:1436"  
 
   fiap.ingresso.evento.api:
     environment:
@@ -61,6 +69,18 @@ services:
         - pagamentodb
     ports:
       - "8006:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro 
+
+  fiap.ingresso.ingresso.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development      
+      - "ConnectionStrings:DefaultConnection=Server=ingressodb;Database=FiapIngressoIngresso;User Id=sa;Password=Sw##N12345678;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"        
+    depends_on:
+        - ingressodb
+    ports:
+      - "8007:80"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro 
