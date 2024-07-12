@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "fiap.ingresso.evento.api": "StartDebugging",
+        "fiap.ingresso.usuario.api": "StartDebugging",
+        "eventodb": "StartWithoutDebugging",
+        "usuariodb": "StartWithoutDebugging"
+      }
+    }
+  }
+}

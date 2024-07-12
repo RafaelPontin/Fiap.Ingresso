@@ -1,0 +1,45 @@
+version: '3.4'
+
+services:
+  eventodb:
+    container_name: eventodb
+    restart: always
+    environment:
+        SA_PASSWORD: "Sw##N12345678"
+        ACCEPT_EULA: "Y"
+    ports:
+        - "1433:1433"
+        
+  usuariodb:
+    container_name: usuariodb
+    restart: always
+    environment:
+        SA_PASSWORD: "Sw##N12345678"
+        ACCEPT_EULA: "Y"
+    ports:
+        - "1434:1434"         
+
+
+  fiap.ingresso.evento.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development      
+      - "ConnectionStrings:DefaultConnection=Server=eventodb;Database=FiapIngressoEvento;User Id=sa;Password=Sw##N12345678;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"        
+    depends_on:
+        - eventodb
+    ports:
+      - "8004:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  fiap.ingresso.usuario.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development      
+      - "ConnectionStrings:DefaultConnection=Server=usuariodb;Database=FiapIngressoEvento;User Id=sa;Password=Sw##N12345678;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"        
+    depends_on:
+        - usuariodb
+    ports:
+      - "8005:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro 
