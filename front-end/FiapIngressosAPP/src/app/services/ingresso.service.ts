@@ -10,7 +10,7 @@ import { ListarIngressos } from '../models/ingresso/ListarIngressos';
 })
 export class IngressoService {
 
-  baseUrlIngresso: string = "https://localhost:7186/";
+  baseUrlIngresso: string = "https://localhost:8067/";
 
   constructor(private http: HttpClient) { }
 

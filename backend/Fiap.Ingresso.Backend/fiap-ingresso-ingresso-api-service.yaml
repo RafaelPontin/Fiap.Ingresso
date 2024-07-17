@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fiap-ingresso-ingresso-api
+spec:
+  selector:
+    app: fiap-ingresso-ingresso-api
+  ports:
+  - name: ingresso-api-port
+    protocol: TCP
+    port: 8067
+    targetPort: 80
+  type: LoadBalancer

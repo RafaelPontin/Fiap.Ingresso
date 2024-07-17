@@ -10,7 +10,7 @@ import { CompraIngresso } from '../models/ingresso/CompraIngresso';
 
 export class PagamentoService
 {
-  baseUrlPagamento: string = "https://localhost:7154/"
+  baseUrlPagamento: string = "https://localhost:8068/"
 
   constructor(private http: HttpClient) {
 

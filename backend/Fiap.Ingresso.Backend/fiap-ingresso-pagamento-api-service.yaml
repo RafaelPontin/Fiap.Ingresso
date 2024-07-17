@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fiap-ingresso-pagamento-api
+spec:
+  selector:
+    app: fiap-ingresso-pagamento-api
+  ports:
+  - name: pagamento-api-port
+    protocol: TCP
+    port: 8068
+    targetPort: 80
+  type: LoadBalancer

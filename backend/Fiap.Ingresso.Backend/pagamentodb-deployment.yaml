@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pagamentodb
+spec:
+  selector:
+    matchLabels:
+      app: pagamentodb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pagamentodb
+    spec:
+      containers:
+      - name: pagamentodb
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+        - name: SA_PASSWORD
+          value: "Sw##N12345678"
+        - name: ACCEPT_EULA
+          value: "Y"
+        ports:
+        - containerPort: 1433

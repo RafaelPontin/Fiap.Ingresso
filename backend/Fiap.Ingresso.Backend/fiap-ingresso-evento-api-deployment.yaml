@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiap-ingresso-evento-api
+spec:
+  selector:
+    matchLabels:
+      app: fiap-ingresso-evento-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fiap-ingresso-evento-api
+    spec:
+      containers:
+      - name: fiap-ingresso-evento-api
+        image: alexssanderferreira/evento-api:latest
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: ConnectionStrings__DefaultConnection
+          value: "Server=eventodb;Database=FiapIngressoEvento;User Id=sa;Password=Sw##N12345678;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"
+        ports:
+        - containerPort: 8066

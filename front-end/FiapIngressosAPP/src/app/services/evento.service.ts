@@ -11,7 +11,7 @@ import { DadosEventos } from '../models/evento/DadosEventos';
 export class EventoService {
 
 
-  baseUrlEvento = 'https://localhost:7128/';
+  baseUrlEvento = 'https://localhost:8066/';
 
   constructor(private http: HttpClient) { }
 
