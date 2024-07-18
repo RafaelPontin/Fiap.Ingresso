@@ -1,4 +1,3 @@
-import { NovoIngresso } from './../../../models/ingresso/NovoIngresso';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
@@ -10,6 +9,7 @@ import { format } from 'date-fns';
 import { ToastrService } from 'ngx-toastr';
 import { IngressoService } from '../../../services/ingresso.service';
 import { DadosEventos } from '../../../models/evento/DadosEventos';
+import { NovoIngresso } from '../../../models/ingresso/NovoIngresso';
 
 @Component({
   selector: 'app-novo-evento',

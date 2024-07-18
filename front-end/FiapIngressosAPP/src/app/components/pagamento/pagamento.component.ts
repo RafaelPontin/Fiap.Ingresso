@@ -1,11 +1,11 @@
-import { PagamentoService } from './../../services/pagamento.service';
-import { CadastroPagamento } from './../../models/pagamento/CadastroPagamento';
 import { Component, OnInit } from '@angular/core';
 import { CompraIngresso } from '../../models/ingresso/CompraIngresso';
 import { ActivatedRoute, Route } from '@angular/router';
 import { IngressoService } from '../../services/ingresso.service';
 import { ListarIngressos } from '../../models/ingresso/ListarIngressos';
 import { Ingressos } from '../../models/ingresso/Ingressos';
+import { CadastroPagamento } from '../../models/pagamento/CadastroPagamento';
+import { PagamentoService } from '../../services/pagamento.service';
 
 
 @Component({

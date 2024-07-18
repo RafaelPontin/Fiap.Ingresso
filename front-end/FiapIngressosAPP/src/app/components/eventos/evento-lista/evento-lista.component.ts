@@ -1,10 +1,10 @@
-import { IngressoService } from './../../../services/ingresso.service';
-import { TokenService } from './../../../services/token.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
 import { ListarEventos } from '../../../models/evento/ListarEventos';
 import { DadosEventos } from '../../../models/evento/DadosEventos';
+import { IngressoService } from '../../../services/ingresso.service';
+import { TokenService } from '../../../services/token.service';
 
 @Component({
   selector: 'app-evento-lista',

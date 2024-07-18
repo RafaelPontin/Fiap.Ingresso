@@ -1,4 +1,3 @@
-import { LoginUser } from './../models/user/loginUser';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CadastroUser } from '../models/user/cadastroUser';
@@ -6,6 +5,7 @@ import { ReplaySubject, tap } from 'rxjs';
 import { RetornoUser } from '../models/user/retornoUser';
 import { TokenService } from './token.service';
 import { User } from '../models/user/user';
+import { LoginUser } from '../models/user/loginUser';
 
 @Injectable({
   providedIn: 'root'
