@@ -1,11 +1,22 @@
-FROM node:alpine
+FROM node:18 AS build
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . /usr/src/app
-
-RUN npm install -g @angular/cli
+COPY package*.json ./
 
 RUN npm install
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+COPY . .
+
+RUN npm run build -- --configuration production
+
+FROM nginx:alpine
+
+COPY --from=build /app/dist/fiap-ingressos-app /usr/share/nginx/html
+
+COPY ./demo-nginx-custom.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+

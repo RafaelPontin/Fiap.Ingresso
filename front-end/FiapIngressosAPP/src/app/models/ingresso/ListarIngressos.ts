@@ -1,6 +1,5 @@
-import { DadosIngresso } from "./DadosIngresso"
-import { Ingressos } from "./Ingressos"
-
+import { DadosIngresso } from "./dadosIngresso";
+import { Ingressos } from "./ingressos";
 
 export interface ListarIngressos {
   "data": DadosIngresso[] | DadosIngresso | Ingressos[] | Ingressos,

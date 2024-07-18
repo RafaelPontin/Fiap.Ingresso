@@ -1,9 +1,9 @@
-import { NovoIngresso } from '../models/ingresso/NovoIngresso';
+import { NovoIngresso } from '../models/ingresso/covoIngresso';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CompraIngresso } from '../models/ingresso/CompraIngresso';
+import { CompraIngresso } from '../models/ingresso/compraIngresso';
 import { Observable } from 'rxjs';
-import { ListarIngressos } from '../models/ingresso/ListarIngressos';
+import { ListarIngressos } from '../models/ingresso/listarIngressos';
 
 @Injectable({
   providedIn: 'root'

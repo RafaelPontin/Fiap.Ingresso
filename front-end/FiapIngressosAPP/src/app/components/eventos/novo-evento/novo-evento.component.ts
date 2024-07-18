@@ -2,14 +2,14 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CadastraEvento } from '../../../models/evento/CadastraEvento';
+import { CadastraEvento } from '../../../models/evento/cadastraEvento';
 import { ActivatedRoute } from '@angular/router';
-import { ListarEventos } from '../../../models/evento/ListarEventos';
+import { ListarEventos } from '../../../models/evento/listarEventos';
 import { format } from 'date-fns';
 import { ToastrService } from 'ngx-toastr';
 import { IngressoService } from '../../../services/ingresso.service';
-import { DadosEventos } from '../../../models/evento/DadosEventos';
-import { NovoIngresso } from '../../../models/ingresso/NovoIngresso';
+import { DadosEventos } from '../../../models/evento/dadosEventos';
+import { NovoIngresso } from '../../../models/ingresso/covoIngresso';
 
 @Component({
   selector: 'app-novo-evento',

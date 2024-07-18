@@ -1,8 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { EventoService } from '../../../services/evento.service';
-import { ListarEventos } from '../../../models/evento/ListarEventos';
-import { DadosEventos } from '../../../models/evento/DadosEventos';
+import { ListarEventos } from '../../../models/evento/listarEventos';
+import { DadosEventos } from '../../../models/evento/dadosEventos';
 import { IngressoService } from '../../../services/ingresso.service';
 import { TokenService } from '../../../services/token.service';
 

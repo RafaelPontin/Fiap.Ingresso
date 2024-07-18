@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { DadosEventos } from '../../../models/evento/DadosEventos';
-import { ListarEventos } from '../../../models/evento/ListarEventos';
-import { DadosIngresso } from '../../../models/ingresso/DadosIngresso';
-import { ListarIngressos } from '../../../models/ingresso/ListarIngressos';
+import { DadosEventos } from '../../../models/evento/dadosEventos';
+import { ListarEventos } from '../../../models/evento/listarEventos';
+import { DadosIngresso } from '../../../models/ingresso/dadosIngresso';
+import { ListarIngressos } from '../../../models/ingresso/listarIngressos';
 import { EventoService } from '../../../services/evento.service';
 import { IngressoService } from '../../../services/ingresso.service';
 import { TokenService } from '../../../services/token.service';
