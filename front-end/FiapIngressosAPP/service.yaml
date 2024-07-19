@@ -2,10 +2,10 @@ apiVersion: v1
 kind: Service
 apiVersion: v1
 metadata:
-  name: fiap-ingressos-app-service
+  name: front-angular-service
 spec:
   selector:
-    app: fiap-ingressos-app
+    app: front-angular
   ports:
     - protocol: TCP
       port: 90
