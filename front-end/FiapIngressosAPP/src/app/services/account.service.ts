@@ -15,7 +15,7 @@ export class AccountService {
   user$ = this.userSubject.asObservable();
 
 
-  baseURL = 'https://localhost:8065/';
+  baseURL = 'http://localhost:8065/';
 
   constructor(private http: HttpClient, private tokenService: TokenService) {
     if(this.tokenService.possuiToken()) {

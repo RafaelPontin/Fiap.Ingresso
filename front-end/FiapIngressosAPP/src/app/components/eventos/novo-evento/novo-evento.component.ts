@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 import { ToastrService } from 'ngx-toastr';
 import { IngressoService } from '../../../services/ingresso.service';
 import { DadosEventos } from '../../../models/evento/dadosEventos';
-import { NovoIngresso } from '../../../models/ingresso/covoIngresso';
+import { NovoIngresso } from '../../../models/ingresso/novoIngresso';
 
 @Component({
   selector: 'app-novo-evento',

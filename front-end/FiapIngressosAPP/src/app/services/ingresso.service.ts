@@ -1,16 +1,18 @@
-import { NovoIngresso } from '../models/ingresso/covoIngresso';
+import { NovoIngresso } from '../models/ingresso/novoIngresso';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CompraIngresso } from '../models/ingresso/compraIngresso';
 import { Observable } from 'rxjs';
 import { ListarIngressos } from '../models/ingresso/listarIngressos';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class IngressoService {
 
-  baseUrlIngresso: string = "https://localhost:8067/";
+  baseUrlIngresso: string = "http://localhost:8067/";
 
   constructor(private http: HttpClient) { }
 

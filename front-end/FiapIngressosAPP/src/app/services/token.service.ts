@@ -11,7 +11,7 @@ export class TokenService {
   }
 
   excluirToken() {
-    localStorage.removeItem("user")
+    localStorage.removeItem("user");
   }
 
   retornarUser(): User | null {
