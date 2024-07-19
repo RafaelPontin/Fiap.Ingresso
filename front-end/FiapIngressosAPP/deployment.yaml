@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: fiap-ingressos-app
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: fiap-ingressos-app
@@ -16,5 +17,5 @@ spec:
         - name: fiap-ingressos-app
           image: angular/fiap-ingressos-app:v1
           imagePullPolicy: Never
-          ports:
+        ports:
             - containerPort: 80

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CadastroPagamento } from '../models/pagamento/CadastroPagamento';
-import { CompraIngresso } from '../models/ingresso/CompraIngresso';
+import { CadastroPagamento } from '../models/pagamento/cadastroPagamento';
+import { CompraIngresso } from '../models/ingresso/compraIngresso';
 
 
 @Injectable({

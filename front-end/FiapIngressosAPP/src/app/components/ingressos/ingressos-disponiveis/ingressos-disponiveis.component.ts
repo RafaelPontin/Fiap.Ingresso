@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ListarEventos } from '../../../models/evento/ListarEventos';
-import { ListarIngressos } from '../../../models/ingresso/ListarIngressos';
+import { ListarEventos } from '../../../models/evento/listarEventos';
+import { ListarIngressos } from '../../../models/ingresso/listarIngressos';
 import { EventoService } from '../../../services/evento.service';
 import { IngressoService } from '../../../services/ingresso.service';
 import { TokenService } from '../../../services/token.service';
-import { DadosEventos } from '../../../models/evento/DadosEventos';
-import { Ingressos } from '../../../models/ingresso/Ingressos';
+import { DadosEventos } from '../../../models/evento/dadosEventos';
+import { Ingressos } from '../../../models/ingresso/ingressos';
 
 
 @Component({

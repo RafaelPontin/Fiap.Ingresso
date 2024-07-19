@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CompraIngresso } from '../../models/ingresso/CompraIngresso';
+import { CompraIngresso } from '../../models/ingresso/compraIngresso';
 import { ActivatedRoute, Route } from '@angular/router';
 import { IngressoService } from '../../services/ingresso.service';
-import { ListarIngressos } from '../../models/ingresso/ListarIngressos';
-import { Ingressos } from '../../models/ingresso/Ingressos';
-import { CadastroPagamento } from '../../models/pagamento/CadastroPagamento';
+import { ListarIngressos } from '../../models/ingresso/listarIngressos';
+import { Ingressos } from '../../models/ingresso/ingressos';
+import { CadastroPagamento } from '../../models/pagamento/cadastroPagamento';
 import { PagamentoService } from '../../services/pagamento.service';
 
 
