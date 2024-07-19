@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiap-ingressos-app
+spec:
+  selector:
+    matchLabels:
+      app: fiap-ingressos-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fiap-ingressos-app
+    spec:
+      containers:
+        - name: fiap-ingressos-app
+          image: angular/fiap-ingressos-app:v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80

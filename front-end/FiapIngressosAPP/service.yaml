@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fiap-ingressos-app-service
+spec:
+  selector:
+    app: fiap-ingressos-app
+  ports:
+    - protocol: TCP
+      port: 90
+      targetPort: 80
+  type: NodePort
