@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: fiap-ingresso-usuario-api
-        image: alexssanderferreira/usuario-api:latest
+        image: rafaelpontin/usuario-api:latest
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
