@@ -61,3 +61,87 @@ resultado esperado.
 
 ## Criterios de aceite
 * https://github.com/RafaelPontin/Fiap.Ingresso/wiki/Levantamento-de-Requisitos-e-Crit%C3%A9rios-de-Aceite
+
+# Tech Challenge 5
+
+## Back End
+
+* Abra o prompt de comando da raiz do projeto back end.
+* Instale o Docker e habilite o Kubernetes na sua maquina.
+* Instale as seguintes pods e services (pode demorar um pouco)
+* Valide se seu Docker esta logando no Docker hub.
+* Build as seguintes imagens (caso prefirir modifique o nome do usuario na build da imagem, só lembre de modificar no Kubernetes):
+  
+```bash docker build -f Dockerfile.usuario -t alexssanderferreira/usuario-api . ```
+
+```bash docker build -f Dockerfile.evento -t alexssanderferreira/evento-api . ```
+
+```bash docker build -f Dockerfile.ingresso -t alexssanderferreira/ingresso-api . ```
+
+```bash docker build -f Dockerfile.pagamento -t alexssanderferreira/pagamento-api . ```
+
+* Execute o comando para dar o puch na imagem (valide seu login no Docker hub antes):
+
+```bash docker docker push alexssanderferreira/usuario-api ```
+
+```bash docker docker push alexssanderferreira/evento-api ```
+
+```bash docker docker push alexssanderferreira/ingresso-api ``` 
+
+```bash docker docker push alexssanderferreira/pagamento-api ```
+
+*  Execute os Kubernetes com os seguintes comandos
+
+```bash kubectl apply -f usuariodb-deployment.yaml ``` 
+
+```bash kubectl apply -f usuariodb-service.yaml ```
+
+```bash kubectl apply -f eventodb-deployment.yaml ```
+
+```bash kubectl apply -f eventodb-service.yaml ```
+
+```bash kubectl apply -f pagamentodb-deployment.yaml ```
+
+```bash kubectl apply -f pagamentodb-service.yaml ```
+
+```bash kubectl apply -f ingressodb-deployment.yaml ```
+
+```bash kubectl apply -f ingressodb-service.yaml ```
+
+```bash kubectl apply -f fiap-ingresso-evento-api-deployment.yaml ```
+
+```bash kubectl apply -f fiap-ingresso-evento-api-service.yaml ```
+
+```bash kubectl apply -f fiap-ingresso-usuario-api-deployment.yaml ```
+
+```bash kubectl apply -f fiap-ingresso-usuario-api-service.yaml ```
+
+```bash kubectl apply -f fiap-ingresso-pagamento-api-deployment.yaml ```
+
+```bash kubectl apply -f fiap-ingresso-pagamento-api-service.yaml ```
+
+```bash kubectl apply -f fiap-ingresso-ingresso-api-deployment.yaml ```
+
+```bash kubectl apply -f fiap-ingresso-ingresso-api-service.yaml ```
+
+## Front End
+
+* Abra o prompt de comando da raiz do projeto front end.
+* Instale o Docker e habilite o Kubernetes na sua maquina.
+* Build as seguintes imagens (caso prefirir modifique o nome do usuario na build da imagem, só lembre de modificar no Kubernetes):
+
+ ```bash docker build -t alexssanderferreira/front-ingressos . ```
+
+* Execute o conteiner da aplicação:
+
+```bash docker run -p 4201:4200 alexssanderferreira/front-ingressos ```
+
+* Execute o comando para dar o puch na imagem (valide seu login no Docker hub antes):
+
+```bash docker push alexssanderferreira/front-ingressos ```
+
+* Build as seguintes imagens (caso prefirir modifique o nome do usuario na build da imagem, só lembre de modificar no Kubernetes):
+
+```bash kubectl apply -f deployment.yaml ```
+
+```bash kubectl apply -f service.yaml ```
