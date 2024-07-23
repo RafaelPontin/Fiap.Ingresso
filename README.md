@@ -130,18 +130,14 @@ resultado esperado.
 * Instale o Docker e habilite o Kubernetes na sua maquina.
 * Build as seguintes imagens (caso prefirir modifique o nome do usuario na build da imagem, só lembre de modificar no Kubernetes):
 
- ```bash docker build -t alexssanderferreira/front-ingressos . ```
-
-* Execute o conteiner da aplicação:
-
-```bash docker run -p 4201:4200 alexssanderferreira/front-ingressos ```
-
-* Execute o comando para dar o puch na imagem (valide seu login no Docker hub antes):
-
-```bash docker push alexssanderferreira/front-ingressos ```
+ ```bash docker build -t front-angular . ```
 
 * Build as seguintes imagens (caso prefirir modifique o nome do usuario na build da imagem, só lembre de modificar no Kubernetes):
 
 ```bash kubectl apply -f deployment.yaml ```
 
 ```bash kubectl apply -f service.yaml ```
+
+* Para escutar a porta do front rodar:
+
+```bash kubectl port-forward service/front-angular-service 80:90 ```
