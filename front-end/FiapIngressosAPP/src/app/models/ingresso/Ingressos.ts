@@ -1,4 +1,4 @@
-import { DadosEventos } from "../evento/DadosEventos";
+import { DadosEventos } from "../evento/dadosEventos";
 
 export interface Ingressos{
   id: string;

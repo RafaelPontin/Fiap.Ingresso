@@ -1,4 +1,3 @@
-import { LoginUser } from './../models/user/loginUser';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CadastroUser } from '../models/user/cadastroUser';
@@ -6,6 +5,7 @@ import { ReplaySubject, tap } from 'rxjs';
 import { RetornoUser } from '../models/user/retornoUser';
 import { TokenService } from './token.service';
 import { User } from '../models/user/user';
+import { LoginUser } from '../models/user/loginUser';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AccountService {
   user$ = this.userSubject.asObservable();
 
 
-  baseURL = 'https://localhost:7142/';
+  baseURL = 'http://localhost:8065/';
 
   constructor(private http: HttpClient, private tokenService: TokenService) {
     if(this.tokenService.possuiToken()) {

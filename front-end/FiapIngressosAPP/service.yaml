@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+apiVersion: v1
+metadata:
+  name: front-angular-service
+spec:
+  selector:
+    app: front-angular
+  ports:
+    - protocol: TCP
+      port: 90
+      targetPort: 80
+  type: NodePort

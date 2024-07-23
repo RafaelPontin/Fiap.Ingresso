@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CadastroPagamento } from '../models/pagamento/CadastroPagamento';
-import { CompraIngresso } from '../models/ingresso/CompraIngresso';
+import { CadastroPagamento } from '../models/pagamento/cadastroPagamento';
 
 
 @Injectable({
@@ -10,7 +9,7 @@ import { CompraIngresso } from '../models/ingresso/CompraIngresso';
 
 export class PagamentoService
 {
-  baseUrlPagamento: string = "https://localhost:7154/"
+  baseUrlPagamento: string = "http://localhost:8068/"
 
   constructor(private http: HttpClient) {
 

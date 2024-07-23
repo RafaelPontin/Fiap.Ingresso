@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-angular
+spec:
+  selector:
+    matchLabels:
+      app: front-angular
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: front-angular
+    spec:
+      containers:
+        - name: front-angular-app
+          image: front-angular:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80

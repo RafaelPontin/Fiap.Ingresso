@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ListarEventos } from '../models/evento/ListarEventos';
-import { CadastraEvento } from '../models/evento/CadastraEvento';
-import { DadosEventos } from '../models/evento/DadosEventos';
+import { ListarEventos } from '../models/evento/listarEventos';
+import { CadastraEvento } from '../models/evento/cadastraEvento';
+import { DadosEventos } from '../models/evento/dadosEventos';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { DadosEventos } from '../models/evento/DadosEventos';
 export class EventoService {
 
 
-  baseUrlEvento = 'https://localhost:7128/';
+  baseUrlEvento = 'http://localhost:8066/';
 
   constructor(private http: HttpClient) { }
 

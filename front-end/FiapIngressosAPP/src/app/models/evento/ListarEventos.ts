@@ -1,4 +1,4 @@
-import { DadosEventos } from "./DadosEventos"
+import { DadosEventos } from "./dadosEventos"
 
 export interface ListarEventos {
   "data": DadosEventos[] | DadosEventos | string,

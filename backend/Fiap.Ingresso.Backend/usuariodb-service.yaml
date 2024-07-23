@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: usuariodb
+spec:
+  selector:
+    app: usuariodb
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 1433
+    targetPort: 1433
+    nodePort: 30001

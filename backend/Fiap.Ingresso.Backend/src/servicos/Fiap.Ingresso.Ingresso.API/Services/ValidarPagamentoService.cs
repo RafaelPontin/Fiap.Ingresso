@@ -17,7 +17,7 @@ public class ValidarPagamentoService : IValidarPagamentoService
 
     public async Task<bool> ValidarPagamento(Guid pagamento)
     {
-        var baseUrl = "https://localhost:7154/";
+        var baseUrl = "http://localhost:8068/";
         var response = await _httpClient.GetAsync(baseUrl+"Pagamento-por-Id?id="+pagamento);
         string result = await response.Content.ReadAsStringAsync();
         var responseResult = JsonConvert.DeserializeObject<ResponseResult<int>>(result);

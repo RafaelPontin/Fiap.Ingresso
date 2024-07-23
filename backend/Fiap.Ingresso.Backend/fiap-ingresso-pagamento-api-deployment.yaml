@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiap-ingresso-pagamento-api
+spec:
+  selector:
+    matchLabels:
+      app: fiap-ingresso-pagamento-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fiap-ingresso-pagamento-api
+    spec:
+      containers:
+      - name: fiap-ingresso-pagamento-api
+        image: alexssanderferreira/pagamento-api:latest
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: ConnectionStrings__DefaultConnection
+          value: "Server=pagamentodb;Database=FiapIngressoPagamento;User Id=sa;Password=Sw##N12345678;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"
+        ports:
+        - containerPort: 8068

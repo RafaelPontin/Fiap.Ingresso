@@ -3,9 +3,10 @@ import { AccountService } from "../../../services/account.service";
 import { Router } from "@angular/router";
 import { CadastroUser } from "../../../models/user/cadastroUser";
 import { Component, OnInit } from "@angular/core";
-import { ValidatorField } from "../../../helpers/ValidatorField";
+
 import { ToastrService } from "ngx-toastr";
 import { RetornoUser } from "../../../models/user/retornoUser";
+import { ValidatorField } from "../../../helpers/validatorFields";
 
 
 @Component({
