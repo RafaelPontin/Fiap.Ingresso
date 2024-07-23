@@ -35,9 +35,11 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'ingressos', component: IngressosComponent,
+    path: 'ingressos', component: EventosComponent,
     children: [
-      { path: 'disponiveis', component: IngressosDisponiveisComponent}
+      { path: 'editar/:id', component: NovoEventoComponent },
+      { path: 'novo', component: NovoEventoComponent },
+      { path: 'lista', component: EventoListaComponent },
     ],
   },
   {
